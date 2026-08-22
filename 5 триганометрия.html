@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математика 10 класс | Блок 5: Тригонометрия</title>
+    
+    <!-- Подключение стилей из вашего примера -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- MathJax для красивых формул -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['\$', '\$']],
+          displayMath: [['\$$', '\$$']]
+        }
+      };
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #d35400;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --bg-light: #ecf0f1;
+        }
+        
+        .difficulty-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            color: white;
+            margin-right: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-easy { background-color: var(--success-color); }
+        .badge-medium { background-color: var(--warning-color); }
+        .badge-hard { background-color: var(--danger-color); }
+
+        .toggle-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            align-self: flex-start;
+        }
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .solution-content {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #bdc3c7;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .rule-box {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 16px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        /* Стили для таблицы */
+        .trig-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 1em;
+        }
+        .trig-table th, .trig-table td {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 8px;
+        }
+        .trig-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .trig-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="page-header card">
+        <h1>Блок 5: Тригонометрия (за 9 класс)</h1>
+        <p class="subtitle">Синус, косинус, тангенс. Таблица углов $30^\circ, 45^\circ, 60^\circ$ и радианная мера.</p>
+    </div>
+
+    <!-- ТЕОРИЯ -->
+    <section class="card theory-block">
+        <h2>📘 Теория для повторения</h2>
+        
+        <h3>1. Определения</h3>
+        <p><strong>В прямоугольном треугольнике:</strong></p>
+        <div class="formula">$\sin \alpha = \frac{\text{Противолежащий катет}}{\text{Гипотенуза}}$</div>
+        <div class="formula">$\cos \alpha = \frac{\text{Прилежащий катет}}{\text{Гипотенуза}}$</div>
+        <div class="formula">$\tan \alpha = \frac{\text{Противолежащий катет}}{\text{Прилежащий катет}} = \frac{\sin \alpha}{\cos \alpha}$</div>
+
+        <h3>2. Единичная окружность (база)</h3>
+        <div class="rule-box"><strong>Важно:</strong> Координаты точки на окружности с радиусом $R=1$ — это $(\cos \alpha; \sin \alpha)$.</div>
+        <ul>
+            <li>Знаки: $\sin$ (+) в I и II четвертях, $\cos$ (+) в I и IV четвертях.</li>
+            <li>Основное тождество: $\sin^2 \alpha + \cos^2 \alpha = 1$.</li>
+        </ul>
+
+        <h3>3. Радианы и градусы</h3>
+        <div class="formula">$180^\circ = \pi$ рад $\Rightarrow 1^\circ = \frac{\pi}{180}$, $1 \text{ рад} = \frac{180^\circ}{\pi}$</div>
+        <div class="formula">Половина круга ($180^\circ$) — это $\pi$, четверть ($90^\circ$) — это $\frac{\pi}{2}$.</div>
+
+        <h3>4. Таблица значений (обязательно выучить)</h3>
+        <table class="trig-table">
+            <thead>
+                <tr>
+                    <th>Угол ($\alpha$)</th>
+                    <th>$0^\circ$ ($0$)</th>
+                    <th>$30^\circ$ ($\frac{\pi}{6}$)</th>
+                    <th>$45^\circ$ ($\frac{\pi}{4}$)</th>
+                    <th>$60^\circ$ ($\frac{\pi}{3}$)</th>
+                    <th>$90^\circ$ ($\frac{\pi}{2}$)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>$\sin \alpha$</td>
+                    <td>$0$</td>
+                    <td>$\frac{1}{2}$</td>
+                    <td>$\frac{\sqrt{2}}{2}$</td>
+                    <td>$\frac{\sqrt{3}}{2}$</td>
+                    <td>$1$</td>
+                </tr>
+                <tr>
+                    <td>$\cos \alpha$</td>
+                    <td>$1$</td>
+                    <td>$\frac{\sqrt{3}}{2}$</td>
+                    <td>$\frac{\sqrt{2}}{2}$</td>
+                    <td>$\frac{1}{2}$</td>
+                    <td>$0$</td>
+                </tr>
+                <tr>
+                    <td>$\tan \alpha$</td>
+                    <td>$0$</td>
+                    <td>$\frac{\sqrt{3}}{3}$</td>
+                    <td>$1$</td>
+                    <td>$\sqrt{3}$</td>
+                    <td>—</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ПРИМЕРЫ РЕШЕНИЯ -->
+    <section class="card practice-block">
+        <h2>✏️ Примеры решения</h2>
+        <p class="instruction">Перевод углов и вычисление выражений по таблице.</p>
+
+        <div class="task-card">
+            <div class="equation">Пример 1. Переведите в радианы угол $150^\circ$</div>
+            <button class="toggle-btn" onclick="showSolution('ex-1')">Показать решение</button>
+            <div id="ex-1" class="solution-content">
+                Умножаем градусы на коэффициент $\frac{\pi}{180}$:<br>
+                $150 \cdot \frac{\pi}{180} = \frac{15\pi}{18} = \frac{5\pi}{6}$.<br>
+                <strong>Ответ:</strong> $\frac{5\pi}{6}$.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">Пример 2. Вычислите: $2\sin\frac{\pi}{3} - \sqrt{3}\cos\frac{\pi}{2}$</div>
+            <button class="toggle-btn" onclick="showSolution('ex-2')">Показать решение</button>
+            <div id="ex-2" class="solution-content">
+                Подставляем значения из таблицы:<br>
+                $2 \cdot \frac{\sqrt{3}}{2} - \sqrt{3} \cdot 0 = \sqrt{3} - 0 = \sqrt{3}$.<br>
+                <strong>Ответ:</strong> $\sqrt{3}$.
+            </div>
+        </div>
+    </section>
+
+    <!-- ЗАДАНИЯ ДЛЯ САМОСТОЯТЕЛЬНОГО РЕШЕНИЯ -->
+    <section class="card practice-block">
+        <h2>📝 Задания для самостоятельного решения</h2>
+        <p class="instruction">Решите задачи самостоятельно. Нажмите кнопку под условием, чтобы проверить ответ.</p>
+
+        <!-- Задача 1 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 1. Найдите значение: $\sin 30^\circ + \cos 60^\circ$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-1')">Показать решение</button>
+            <div id="sol-1" class="solution-content">
+                <strong>Решение:</strong><br>
+                $\frac{1}{2} + \frac{1}{2} = 1$.<br>
+                <strong>Ответ:</strong> $1$.
+            </div>
+        </div>
+
+        <!-- Задача 2 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 2. Чему равно произведение: $\tan 45^\circ \cdot \cos 60^\circ$?</div>
+            <button class="toggle-btn" onclick="showSolution('sol-2')">Показать решение</button>
+            <div id="sol-2" class="solution-content">
+                <strong>Решение:</strong><br>
+                $1 \cdot \frac{1}{2} = 0,5$.<br>
+                <strong>Ответ:</strong> $0,5$.
+            </div>
+        </div>
+
+        <!-- Задача 3 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 3. Переведите в радианы: $270^\circ$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-3')">Показать решение</button>
+            <div id="sol-3" class="solution-content">
+                <strong>Решение:</strong><br>
+                $270 \cdot \frac{\pi}{180} = \frac{3\pi}{2}$.<br>
+                <strong>Ответ:</strong> $\frac{3\pi}{2}$.
+            </div>
+        </div>
+
+        <!-- Задача 4 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 4. Вычислите: $\sin^2 \frac{\pi}{4} + \cos^2 \frac{\pi}{4}$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-4')">Показать решение</button>
+            <div id="sol-4" class="solution-content">
+                <strong>Решение:</strong><br>
+                По основному тригонометрическому тождеству сумма квадратов синуса и косинуса любого угла равна $1$.<br>
+                Проверка таблицей: $(\frac{\sqrt{2}}{2})^2 + (\frac{\sqrt{2}}{2})^2 = \frac{2}{4} + \frac{2}{4} = 1$.<br>
+                <strong>Ответ:</strong> $1$.
+            </div>
+        </div>
+
+        <!-- Задача 5 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 5. Найдите $\cos \alpha$, если $\sin \alpha = 0,6$ и угол $\alpha$ острый.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-5')">Показать решение</button>
+            <div id="sol-5" class="solution-content">
+                <strong>Решение:</strong><br>
+                Используем формулу $\cos^2 \alpha = 1 - \sin^2 \alpha$.<br>
+                $\cos^2 \alpha = 1 - (0,6)^2 = 1 - 0,36 = 0,64$.<br>
+                Так как угол острый, косинус положителен: $\cos \alpha = \sqrt{0,64} = 0,8$.<br>
+                <strong>Ответ:</strong> $0,8$.
+            </div>
+        </div>
+
+        <!-- Задача 6 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 6. Решите уравнение: $\sin x = \frac{1}{2}$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-6')">Показать решение</button>
+            <div id="sol-6" class="solution-content">
+                <strong>Решение:</strong><br>
+                Находим точку на оси $y$ со значением $0,5$. Это соответствует углу $30^\circ$ или $\frac{\pi}{6}$.<br>
+                Для курса 9 класса записываем корни в пределах первого оборота.<br>
+                <strong>Ответ:</strong> $x_1 = \frac{\pi}{6}, x_2 = \frac{5\pi}{6}$.
+            </div>
+        </div>
+
+        <!-- Задача 7 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 7. Упростите выражение: $\frac{\sin \alpha}{\sqrt{1 - \sin^2 \alpha}}$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-7')">Показать решение</button>
+            <div id="sol-7" class="solution-content">
+                <strong>Решение:</strong><br>
+                Из основного тождества знаем, что $1 - \sin^2 \alpha = \cos^2 \alpha$.<br>
+                Выражение примет вид: $\frac{\sin \alpha}{\sqrt{\cos^2 \alpha}} = \frac{\sin \alpha}{|\cos \alpha|} = \tan \alpha$ (для углов, где $\cos > 0$).<br>
+                <strong>Ответ:</strong> $\tan \alpha$.
+            </div>
+        </div>
+    </section>
+
+    <footer class="page-footer">
+        © 2026 Повторение математики за лето. Выучите таблицу наизусть!
+    </footer>
+</div>
+
+<script>
+    function showSolution(id) {
+        const sol = document.getElementById(id);
+        if (sol.style.display === 'block') {
+            sol.style.display = 'none';
+        } else {
+            sol.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>

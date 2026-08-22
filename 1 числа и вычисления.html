@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математика 10 класс | Летняя подготовка</title>
+    
+    <!-- Подключение стилей из вашего примера -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- MathJax для красивых формул -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['\$', '\$']],
+          displayMath: [['\$$', '\$$']]
+        }
+      };
+    </script>
+
+    <style>
+        /* Дополнительные стили специально для этого урока */
+        :root {
+            --primary-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --bg-light: #ecf0f1;
+        }
+        
+        .difficulty-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            color: white;
+            margin-right: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-easy { background-color: var(--success-color); }
+        .badge-medium { background-color: var(--warning-color); }
+        .badge-hard { background-color: var(--danger-color); }
+
+        .toggle-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            align-self: flex-start;
+        }
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .solution-content {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #bdc3c7;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .rule-box {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 16px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="page-header card">
+        <h1>Блок 1: Числа и вычисления</h1>
+        <p class="subtitle">Повторение перед 10 классом: действия со степенями, ФСУ и модуль.</p>
+    </div>
+
+    <!-- ТЕОРИЯ -->
+    <section class="card theory-block">
+        <h2>📘 Теория для повторения</h2>
+        
+        <h3>1. Свойства степеней</h3>
+        <div class="formula">
+            $a^n \cdot a^m = a^{n+m}$ &nbsp;&nbsp;&nbsp;&nbsp; $\frac{a^n}{a^m} = a^{n-m}$ &nbsp;&nbsp;&nbsp;&nbsp; $(a^n)^m = a^{nm}$
+        </div>
+        <div class="formula">
+            $a^{-n} = \frac{1}{a^n}$ &nbsp;&nbsp;&nbsp;&nbsp; $\sqrt[n]{a^m} = a^{\frac{m}{n}}$ &nbsp;&nbsp;&nbsp;&nbsp; $(a \cdot b)^n = a^n \cdot b^n$
+        </div>
+        <div class="rule-box"><strong>Важно:</strong> При возведении отрицательного числа в четную степень результат всегда положительный ($(-3)^2 = 9$), а в нечетную — отрицательный ($(-3)^3 = -27$). Корень четной степени определен только для неотрицательных чисел ($\sqrt{-4}$ не существует в действительных числах).</div>
+
+        <h3>2. Формулы сокращенного умножения (ФСУ)</h3>
+        <ul>
+            <li><strong>Разность квадратов:</strong> $a^2 - b^2 = (a - b)(a + b)$</li>
+            <li><strong>Квадрат суммы/разности:</strong> $(a \pm b)^2 = a^2 \pm 2ab + b^2$</li>
+            <li><strong>Сумма кубов:</strong> $a^3 + b^3 = (a + b)(a^2 - ab + b^2)$</li>
+            <li><strong>Куб суммы:</strong> $(a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3$</li>
+        </ul>
+
+        <h3>3. Модуль числа $|x|$</h3>
+        <div class="formula">
+            $|x| = \begin{cases} x, & \text{если } x \ge 0 \\ -x, & \text{если } x < 0 \end{cases}$
+        </div>
+        <div class="rule-box"><strong>Геометрический смысл:</strong> Расстояние от точки $x$ до начала координат. Уравнение $|x| = 5$ имеет два корня: $5$ и $-5$. Неравенство $|x| < 5$ означает интервал $(-5; 5)$.</div>
+    </section>
+
+        <!-- ПРИМЕРЫ РЕШЕНИЯ -->
+    <section class="card practice-block">
+        <h2>✏️ Примеры решения</h2>
+        <p class="instruction">Посмотрите, как применяются правила выше на практике.</p>
+
+        <div class="task-card">
+            <div class="equation">Пример 1. Вычислить: $(-2)^{-3} \cdot (-2)^5$</div>
+            <button class="toggle-btn" onclick="showSolution('ex-1')">Показать решение</button>
+            <div id="ex-1" class="solution-content">
+                Применяем свойство сложения показателей степеней при умножении:<br>
+                $(-2)^{-3+5} = (-2)^2 = 4$.<br>
+                <strong>Ответ:</strong> 4.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">Пример 2. Разложить на множители: $27x^3 + 8y^3$</div>
+            <button class="toggle-btn" onclick="showSolution('ex-2')">Показать решение</button>
+            <div id="ex-2" class="solution-content">
+                Используем формулу суммы кубов ($a^3 + b^3$). Представим выражение как $(3x)^3 + (2y)^3$:<br>
+                $(3x + 2y)((3x)^2 - 3x \cdot 2y + (2y)^2) = (3x + 2y)(9x^2 - 6xy + 4y^2)$.<br>
+                <strong>Ответ:</strong> $(3x + 2y)(9x^2 - 6xy + 4y^2)$.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">Пример 3. Решить уравнение: $|2x - 5| = 7$</div>
+            <button class="toggle-btn" onclick="showSolution('ex-3')">Показать решение</button>
+            <div id="ex-3" class="solution-content">
+                Раскрываем модуль двумя способами (выражение внутри равно числу или противоположному ему):<br>
+                1) $2x - 5 = 7 \Rightarrow 2x = 12 \Rightarrow x = 6$<br>
+                2) $2x - 5 = -7 \Rightarrow 2x = -2 \Rightarrow x = -1$<br>
+                <strong>Ответ:</strong> $-1; 6$.
+            </div>
+        </div>
+    </section>
+
+    <!-- ЗАДАНИЯ ДЛЯ САМОСТОЯТЕЛЬНОГО РЕШЕНИЯ -->
+    <section class="card practice-block">
+        <h2>📝 Задания для самостоятельного решения</h2>
+        <p class="instruction">Решите задачи самостоятельно. Нажмите кнопку под условием, чтобы проверить ответ и увидеть подробное решение.</p>
+
+        <!-- Задача 1 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 1. Найдите значение выражения: $\frac{3^{-4} \cdot 3^6}{3^0}$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-1')">Показать решение</button>
+            <div id="sol-1" class="solution-content">
+                <strong>Решение:</strong><br>
+                В знаменателе любое число в нулевой степени равно 1 ($3^0 = 1$). В числителе складываем показатели: $3^{-4+6} = 3^2 = 9$.<br>
+                <strong>Ответ:</strong> 9.
+            </div>
+        </div>
+
+        <!-- Задача 2 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 2. Упростите выражение: $\frac{(a^5)^2}{a^3 \cdot a^4}$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-2')">Показать решение</button>
+            <div id="sol-2" class="solution-content">
+                <strong>Решение:</strong><br>
+                Степень в степени перемножаются, при умножении — складываются: $\frac{a^{10}}{a^7}$. При делении вычитаем: $a^{10-7} = a^3$.<br>
+                <strong>Ответ:</strong> $a^3$.
+            </div>
+        </div>
+
+        <!-- Задача 3 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 3. Разложите на множители: $x^4 - 16y^4$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-3')">Показать решение</button>
+            <div id="sol-3" class="solution-content">
+                <strong>Решение:</strong><br>
+                Это разность квадратов: $(x^2)^2 - (4y^2)^2 = (x^2 - 4y^2)(x^2 + 4y^2)$. Первая скобка снова раскладывается: $(x - 2y)(x + 2y)(x^2 + 4y^2)$.<br>
+                <strong>Ответ:</strong> $(x - 2y)(x + 2y)(x^2 + 4y^2)$.
+            </div>
+        </div>
+
+        <!-- Задача 4 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 4. Вычислите наиболее удобным способом: $102^2 - 98^2$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-4')">Показать решение</button>
+            <div id="sol-4" class="solution-content">
+                <strong>Решение:</strong><br>
+                Вместо возведения в квадрат используем формулу разности квадратов: $(102 - 98)(102 + 98) = 4 \cdot 200 = 800$.<br>
+                <strong>Ответ:</strong> 800.
+            </div>
+        </div>
+
+        <!-- Задача 5 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-hard">Сложный</span>
+            <div class="equation">Задание 5. Упростите: $\frac{\sqrt[3]{a^2} \cdot \sqrt[6]{a}}{\sqrt{a}}$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-5')">Показать решение</button>
+            <div id="sol-5" class="solution-content">
+                <strong>Решение:</strong><br>
+                Переводим всё в дробные степени: $\frac{a^{2/3} \cdot a^{1/6}}{a^{1/2}}$. Приводим к общему знаменателю (6): $\frac{a^{4/6} \cdot a^{1/6}}{a^{3/6}} = \frac{a^{5/6}}{a^{3/6}} = a^{2/6} = a^{1/3} = \sqrt[3]{a}$.<br>
+                <strong>Ответ:</strong> $\sqrt[3]{a}$.
+            </div>
+        </div>
+
+        <!-- Задача 6 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-hard">Сложный</span>
+            <div class="equation">Задание 6. Решите неравенство: $|x - 3| \le 4$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-6')">Показать решение</button>
+            <div id="sol-6" class="solution-content">
+                <strong>Решение:</strong><br>
+                Данное неравенство равносильно двойному неравенству: $-4 \le x - 3 \le 4$. Прибавляем 3 ко всем частям: $-1 \le x \le 7$.<br>
+                <strong>Ответ:</strong> $[-1; 7]$.
+            </div>
+        </div>
+    </section>
+
+    <footer class="page-footer">
+        © 2026 Повторение математики за лето. Рекомендуется решать без калькулятора.
+    </footer>
+</div>
+
+<script>
+    function showSolution(id) {
+        const sol = document.getElementById(id);
+        if (sol.style.display === 'block') {
+            sol.style.display = 'none';
+        } else {
+            sol.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>

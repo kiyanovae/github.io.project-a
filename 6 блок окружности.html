@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математика 10 класс | Блок 6: Окружности</title>
+    
+    <!-- Подключение стилей из вашего примера -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- MathJax для красивых формул -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['\$', '\$']],
+          displayMath: [['\$$', '\$$']]
+        }
+      };
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #8e44ad;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --bg-light: #ecf0f1;
+        }
+        
+        .difficulty-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            color: white;
+            margin-right: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-easy { background-color: var(--success-color); }
+        .badge-medium { background-color: var(--warning-color); }
+        .badge-hard { background-color: var(--danger-color); }
+
+        .toggle-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            align-self: flex-start;
+        }
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .solution-content {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #bdc3c7;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .rule-box {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 16px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        /* Стили для геометрических чертежей */
+        .geom-note {
+            font-style: italic;
+            color: #555;
+            margin-top: 5px;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="page-header card">
+        <h1>Блок 6: Окружности</h1>
+        <p class="subtitle">Центральные и вписанные углы, хорды, касательные и площади.</p>
+    </div>
+
+    <!-- ТЕОРИЯ -->
+    <section class="card theory-block">
+        <h2>📘 Теория для повторения</h2>
+        
+        <h3>1. Углы в окружности</h3>
+        <ul>
+            <li><strong>Вписанный угол:</strong> равен половине дуги, на которую опирается ($\angle ABC = \frac{1}{2} \cup AC$).</li>
+            <li><strong>Центральный угол:</strong> равен градусной мере дуги, на которую он опирается ($\angle AOC = \cup AC$).</li>
+            <li>Угол между касательной и хордой равен половине дуги, заключенной внутри него.</li>
+        </ul>
+
+        <h3>2. Свойства отрезков</h3>
+        <ul>
+            <li><strong>Радиус $\perp$ касательной:</strong> радиус, проведенный в точку касания, перпендикулярен касательной.</li>
+            <li><strong>Квадрат касательной:</strong> если $AB$ — касательная, а $AO$ — секущая, то $AB^2 = AO \cdot AC$.</li>
+            <li><strong>Хорды:</strong> равные хорды стягивают равные дуги. Диаметр, перпендикулярный хорде, делит её пополам.</li>
+        </ul>
+
+        <h3>3. Длины и площади</h3>
+        <div class="formula">Длина дуги: $L = \frac{\pi R \alpha}{180}$</div>
+        <div class="formula">Площадь сектора: $S_{сект} = \frac{\pi R^2 \alpha}{360}$</div>
+        <div class="formula">Площадь сегмента: $S_{сегм} = S_{сект} - S_{\triangle}$</div>
+
+        <h3>4. Описанная и вписанная окружности</h3>
+        <div class="rule-box"><strong>Важно:</strong>
+            <ul>
+                <li>Центр описанной около прямоугольного треугольника окружности лежит на середине гипотенузы ($R = c/2$).</li>
+                <li>Для правильного треугольника: $R = \frac{a}{\sqrt{3}}$, $r = \frac{a}{2\sqrt{3}}$.</li>
+                <li>Для квадрата: $R = \frac{a\sqrt{2}}{2}$, $r = \frac{a}{2}$.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ПРИМЕРЫ РЕШЕНИЯ -->
+    <section class="card practice-block">
+        <h2>✏️ Примеры решения</h2>
+        <p class="instruction">Разбор типичных задач на углы и длины.</p>
+
+        <div class="task-card">
+            <div class="equation">Пример 1. Центральный угол $AOB = 60^\circ$. Найдите вписанный угол $ACB$, опирающийся на ту же дугу.</div>
+            <button class="toggle-btn" onclick="showSolution('ex-1')">Показать решение</button>
+            <div id="ex-1" class="solution-content">
+                Вписанный угол равен половине центрального.<br>
+                $\angle ACB = 60 / 2 = 30^\circ$.<br>
+                <strong>Ответ:</strong> $30^\circ$.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">Пример 2. Длина окружности равна $10\pi$. Найдите площадь круга.</div>
+            <button class="toggle-btn" onclick="showSolution('ex-2')">Показать решение</button>
+            <div id="ex-2" class="solution-content">
+                Находим радиус через длину: $C = 2\pi R \Rightarrow 10\pi = 2\pi R \Rightarrow R = 5$.<br>
+                Площадь: $S = \pi R^2 = \pi \cdot 5^2 = 25\pi$.<br>
+                <strong>Ответ:</strong> $25\pi$.
+            </div>
+        </div>
+    </section>
+
+    <!-- ЗАДАНИЯ ДЛЯ САМОСТОЯТЕЛЬНОГО РЕШЕНИЯ -->
+    <section class="card practice-block">
+        <h2>📝 Задания для самостоятельного решения</h2>
+        <p class="instruction">Решите задачи самостоятельно. Нажмите кнопку под условием, чтобы проверить ответ.</p>
+
+        <!-- Задача 1 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 1. Хорда $AB = 16$. Расстояние от центра до хорды $OM = 6$. Найдите радиус.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-1')">Показать решение</button>
+            <div id="sol-1" class="solution-content">
+                <strong>Решение:</strong><br>
+                Радиус, перпендикулярный хорде, делит её пополам: $AM = 8$.<br>
+                По теореме Пифагора в $\triangle OMA$:<br>
+                $R = OA = \sqrt{OM^2 + AM^2} = \sqrt{6^2 + 8^2} = \sqrt{36+64} = 10$.<br>
+                <strong>Ответ:</strong> $10$.
+            </div>
+        </div>
+
+        <!-- Задача 2 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 2. Вписанный угол опирается на дугу $120^\circ$. Чему равен угол?</div>
+            <button class="toggle-btn" onclick="showSolution('sol-2')">Показать решение</button>
+            <div id="sol-2" class="solution-content">
+                <strong>Решение:</strong><br>
+                Вписанный угол равен половине дуги: $120 / 2 = 60^\circ$.<br>
+                <strong>Ответ:</strong> $60^\circ$.
+            </div>
+        </div>
+
+        <!-- Задача 3 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 3. Касательная $AB = 12$, расстояние $OA = 13$. Найдите радиус $OB$.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-3')">Показать решение</button>
+            <div id="sol-3" class="solution-content">
+                <strong>Решение:</strong><br>
+                Радиус в точке касания $\perp$ касательной. Треугольник $OBA$ прямоугольный.<br>
+                $OB = \sqrt{OA^2 - AB^2} = \sqrt{13^2 - 12^2} = \sqrt{169-144} = \sqrt{25} = 5$.<br>
+                <strong>Ответ:</strong> $5$.
+            </div>
+        </div>
+
+        <!-- Задача 4 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 4. Сторона правильного шестиугольника равна $5$. Найдите радиус описанной окружности.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-4')">Показать решение</button>
+            <div id="sol-4" class="solution-content">
+                <strong>Решение:</strong><br>
+                У правильного шестиугольника сторона равна радиусу описанной окружности.<br>
+                <strong>Ответ:</strong> $5$.
+            </div>
+        </div>
+
+        <!-- Задача 5 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 5. Найдите длину окружности, если радиус $R = 7$.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-5')">Показать решение</button>
+            <div id="sol-5" class="solution-content">
+                <strong>Решение:</strong><br>
+                $C = 2\pi R = 2 \cdot \pi \cdot 7 = 14\pi$.<br>
+                <strong>Ответ:</strong> $14\pi$.
+            </div>
+        </div>
+
+        <!-- Задача 6 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 6. Две хорды пересекаются. Отрезки одной $4$ и $9$, один отрезок второй $6$. Найдите второй отрезок.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-6')">Показать решение</button>
+            <div id="sol-6" class="solution-content">
+                <strong>Решение:</strong><br>
+                Произведения отрезков хорд равны: $4 \cdot 9 = 6 \cdot x$.<br>
+                $36 = 6x \Rightarrow x = 6$.<br>
+                <strong>Ответ:</strong> $6$.
+            </div>
+        </div>
+
+        <!-- Задача 7 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 7. Гипотенуза прямоугольного треугольника $26$. Найдите радиус описанной окружности.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-7')">Показать решение</button>
+            <div id="sol-7" class="solution-content">
+                <strong>Решение:</strong><br>
+                Центр описанной окружности лежит на середине гипотенузы.<br>
+                $R = c / 2 = 26 / 2 = 13$.<br>
+                <strong>Ответ:</strong> $13$.
+            </div>
+        </div>
+
+        <!-- Задача 8 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 8. Сторона правильного треугольника $6\sqrt{3}$. Найдите радиус вписанной окружности.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-8')">Показать решение</button>
+            <div id="sol-8" class="solution-content">
+                <strong>Решение:</strong><br>
+                Для правильного треугольника $r = \frac{a}{2\sqrt{3}}$.<br>
+                $r = \frac{6\sqrt{3}}{2\sqrt{3}} = 3$.<br>
+                <strong>Ответ:</strong> $3$.
+            </div>
+        </div>
+
+        <!-- Задача 9 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 9. Дуга составляет $1/6$ часть окружности. Найдите её длину, если радиус $12$.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-9')">Показать решение</button>
+            <div id="sol-9" class="solution-content">
+                <strong>Решение:</strong><br>
+                Полная длина окружности: $2\pi \cdot 12 = 24\pi$.<br>
+                Длина дуги: $24\pi / 6 = 4\pi$.<br>
+                <strong>Ответ:</strong> $4\pi$.
+            </div>
+        </div>
+
+        <!-- Задача 10 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-hard">Сложный</span>
+                <div class="equation">Задание 10. Из точки $M$ проведены две касательные $MA$ и $MB$ ($A, B$ — точки касания). Угол $AMB = 60^\circ$, $MA = 12$. Найдите длину хорды $AB$.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-10')">Показать решение</button>
+            <div id="sol-10" class="solution-content">
+                <strong>Решение:</strong><br>
+                Касательные равны ($MA=MB$), значит $\triangle AMB$ равнобедренный.<br>
+                Углы при основании: $(180 - 60) / 2 = 60^\circ$. Значит, $\triangle AMB$ — равносторонний.<br>
+                Следовательно, $AB = MA = 12$.<br>
+                <strong>Ответ:</strong> $12$.
+            </div>
+        </div>
+    </section>
+
+    <footer class="page-footer">
+        © 2026 Повторение математики за лето. Помните: радиус, проведенный в точку касания, всегда образует прямой угол!
+    </footer>
+</div>
+
+<script>
+    function showSolution(id) {
+        const sol = document.getElementById(id);
+        if (sol.style.display === 'block') {
+            sol.style.display = 'none';
+        } else {
+            sol.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>

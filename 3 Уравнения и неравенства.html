@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математика 10 класс | Блок 3: Уравнения и неравенства</title>
+    
+    <!-- Подключение стилей из вашего примера -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- MathJax для красивых формул -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['\$', '\$']],
+          displayMath: [['\$$', '\$$']]
+        }
+      };
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #9b59b6;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --bg-light: #ecf0f1;
+        }
+        
+        .difficulty-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            color: white;
+            margin-right: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-easy { background-color: var(--success-color); }
+        .badge-medium { background-color: var(--warning-color); }
+        .badge-hard { background-color: var(--danger-color); }
+
+        .toggle-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            align-self: flex-start;
+        }
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .solution-content {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #bdc3c7;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .rule-box {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 16px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        /* Специальные стили для метода интервалов */
+        .number-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .point {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #333;
+            background: white;
+            position: relative;
+        }
+        .point-filled {
+            background: #333;
+        }
+        .arrow-up, .arrow-down {
+            width: 0; 
+            height: 0; 
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            margin: 0 10px;
+        }
+        .arrow-up { border-bottom: 12px solid var(--success-color); }
+        .arrow-down { border-top: 12px solid var(--danger-color); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="page-header card">
+        <h1>Блок 3: Уравнения и неравенства</h1>
+        <p class="subtitle">Повторение квадратных уравнений, ОДЗ иррациональных выражений и метода интервалов.</p>
+    </div>
+
+    <!-- ТЕОРИЯ -->
+    <section class="card theory-block">
+        <h2>📘 Теория для повторения</h2>
+        
+        <h3>1. Квадратные уравнения $ax^2 + bx + c = 0$</h3>
+        <div class="formula">Дискриминант: $D = b^2 - 4ac$</div>
+        <ul>
+            <li>Если $D > 0$: два корня $x_{1,2} = \frac{-b \pm \sqrt{D}}{2a}$</li>
+            <li>Если $D = 0$: один корень $x = \frac{-b}{2a}$</li>
+            <li>Если $D < 0$: корней нет</li>
+        </ul>
+        <div class="formula">Теорема Виета: $x_1 + x_2 = -\frac{b}{a}$, $x_1 \cdot x_2 = \frac{c}{a}$</div>
+
+        <h3>2. Иррациональные уравнения</h3>
+        <div class="rule-box"><strong>Важно:</strong> При возведении обеих частей в четную степень (квадрат) могут появиться посторонние корни. Их обязательно нужно проверять подстановкой в исходное уравнение!</div>
+        <div class="formula">$\sqrt{f(x)} = g(x) \Rightarrow \begin{cases} f(x) = (g(x))^2 \\ g(x) \ge 0 \end{cases}$</div>
+
+        <h3>3. Метод интервалов (для неравенств)</h3>
+        <ol>
+            <li>Перенести всё в левую часть, справа оставить $0$.</li>
+            <li>Найти нули функции (решить уравнение $f(x) = 0$) и точки разрыва (ОДЗ знаменателя).</li>
+            <li>Отметить их на числовой оси.</li>
+            <li>Определить знаки на интервалах (справа налево чередуются $+$, $-$, $+$...). Если корень имеет четную кратность (например, $(x-2)^2$), знак при переходе через него НЕ меняется.</li>
+            <li>Выбрать нужные промежутки согласно знаку неравенства.</li>
+        </ol>
+    </section>
+
+    <!-- ПРИМЕРЫ РЕШЕНИЯ -->
+    <section class="card practice-block">
+        <h2>✏️ Примеры решения</h2>
+        <p class="instruction">Разбор типичных задач: рациональное уравнение и подробный разбор квадратного неравенства.</p>
+
+        <div class="task-card">
+            <div class="equation">Пример 1. Решите уравнение: $\frac{x^2 - 4}{x - 2} = 0$</div>
+            <button class="toggle-btn" onclick="showSolution('ex-1')">Показать решение</button>
+            <div id="ex-1" class="solution-content">
+                Дробь равна нулю, когда числитель равен нулю, а знаменатель не равен нулю:<br>
+                1) $x^2 - 4 = 0 \Rightarrow (x-2)(x+2) = 0 \Rightarrow x = 2$ или $x = -2$.<br>
+                2) Проверяем ОДЗ: $x - 2 \neq 0 \Rightarrow x \neq 2$.<br>
+                Корень $x = 2$ является посторонним.<br>
+                <strong>Ответ:</strong> $-2$.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">Пример 2. Решите неравенство: $x^2 - 5x + 6 \le 0$</div>
+            <button class="toggle-btn" onclick="showSolution('ex-2')">Показать решение</button>
+            <div id="ex-2" class="solution-content">
+                <strong>Шаг 1. Находим корни (нули функции):</strong><br>
+                Решаем уравнение $x^2 - 5x + 6 = 0$. По теореме Виета:<br>
+                $x_1 + x_2 = 5$, $x_1 \cdot x_2 = 6$.<br>
+                Корни: $x_1 = 2$, $x_2 = 3$.<br><br>
+                
+                <strong>Шаг 2. Строим метод интервалов:</strong><br>
+                Отмечаем точки 2 и 3 на прямой. Так как неравенство нестрогое ($\le$), точки будут "закрашенными".<br>
+                
+                <div class="number-line">
+                    <span>$(-\infty; 2]$</span>
+                    <div class="point point-filled"></div>
+                    <span>$[2; 3]$</span>
+                    <div class="point point-filled"></div>
+                    <span>$[3; +\infty)$</span>
+                </div>
+                
+                Определяем знаки:
+                <ul>
+                    <li>Возьмем $x=0$ (слева): $0^2 - 0 + 6 = 6$ ($&gt; 0$). Знак $+$.</li>
+                    <li>Возьмем $x=2.5$ (между корнями): $6.25 - 12.5 + 6 = -0.25$ ($&lt; 0$). Знак $-$.</li>
+                    <li>Возьмем $x=4$ (справа): $16 - 20 + 6 = 2$ ($&gt; 0$). Знак $+$.</li>
+                </ul>
+                
+                Нам нужен интервал со знаком минус ($\le 0$). Это промежуток между корнями.<br>
+                <strong>Ответ:</strong> $[2; 3]$.
+            </div>
+        </div>
+    </section>
+
+    <!-- ЗАДАНИЯ ДЛЯ САМОСТОЯТЕЛЬНОГО РЕШЕНИЯ -->
+    <section class="card practice-block">
+        <h2>📝 Задания для самостоятельного решения</h2>
+        <p class="instruction">Решите задачи самостоятельно. Нажмите кнопку под условием, чтобы проверить ответ.</p>
+
+        <!-- Задача 1 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 1. Решите неполное квадратное уравнение: $5x^2 - 125 = 0$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-1')">Показать решение</button>
+            <div id="sol-1" class="solution-content">
+                <strong>Решение:</strong><br>
+                $5x^2 = 125 \Rightarrow x^2 = 25 \Rightarrow x = \pm 5$.<br>
+                <strong>Ответ:</strong> $-5; 5$.
+            </div>
+        </div>
+
+        <!-- Задача 2 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 2. Решите линейное уравнение с модулем: $|x - 3| = 7$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-2')">Показать решение</button>
+            <div id="sol-2" class="solution-content">
+                <strong>Решение:</strong><br>
+                $x - 3 = 7 \Rightarrow x = 10$.<br>
+                $x - 3 = -7 \Rightarrow x = -4$.<br>
+                <strong>Ответ:</strong> $-4; 10$.
+            </div>
+        </div>
+
+        <!-- Задача 3 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 3. Решите уравнение: $\sqrt{x + 1} = x - 1$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-3')">Показать решение</button>
+            <div id="sol-3" class="solution-content">
+                <strong>Решение:</strong><br>
+                Возводим в квадрат (с учетом условия $x-1 \ge 0$):<br>
+                $x + 1 = (x - 1)^2 \Rightarrow x + 1 = x^2 - 2x + 1$.<br>
+                $x^2 - 3x = 0 \Rightarrow x(x - 3) = 0$. Корни: $0$ и $3$.<br>
+                Проверка условия $x \ge 1$: корень $0$ не подходит.<br>
+                Проверка подстановкой $x=3$: $\sqrt{4} = 3-1$ (верно).<br>
+                <strong>Ответ:</strong> $3$.
+            </div>
+        </div>
+
+        <!-- Задача 4 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 4. Решите биквадратное уравнение: $x^4 - 13x^2 + 36 = 0$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-4')">Показать решение</button>
+            <div id="sol-4" class="solution-content">
+                <strong>Решение:</strong><br>
+                Замена $t = x^2, t \ge 0$:<br>
+                $t^2 - 13t + 36 = 0$. По Виету: $t_1 = 4, t_2 = 9$.<br>
+                Обратная замена: $x^2 = 4 \Rightarrow x = \pm 2$; $x^2 = 9 \Rightarrow x = \pm 3$.<br>
+                <strong>Ответ:</strong> $-3; -2; 2; 3$.
+            </div>
+        </div>
+
+        <!-- Задача 5 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 5. Решите неравенство: $\frac{x - 5}{x + 2} &gt; 0$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-5')">Показать решение</button>
+            <div id="sol-5" class="solution-content">
+                <strong>Решение:</strong><br>
+                Нули: $x=5$. Точка разрыва: $x=-2$.<br>
+                Интервалы: $(-\infty; -2)$, $(-2; 5)$, $(5; +\infty)$.<br>
+                Знаки: $+$, $-$, $+$.<br>
+                Нам нужны плюсы.<br>
+                <strong>Ответ:</strong> $(-\infty; -2) \cup (5; +\infty)$.
+            </div>
+        </div>
+
+        <!-- Задача 6 (Заменено на Легкий уровень) -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 6. Решите уравнение: $|x + 4| = 9$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-6')">Показать решение</button>
+            <div id="sol-6" class="solution-content">
+                <strong>Решение:</strong><br>
+                Раскрываем модуль:<br>
+                $x + 4 = 9 \Rightarrow x = 5$.<br>
+                $x + 4 = -9 \Rightarrow x = -13$.<br>
+                <strong>Ответ:</strong> $-13; 5$.
+            </div>
+        </div>
+
+        <!-- Задача 7 (Заменено на Легкий уровень) -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 7. Решите уравнение: $x^2 - 8x + 15 = 0$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-7')">Показать решение</button>
+            <div id="sol-7" class="solution-content">
+                <strong>Решение:</strong><br>
+                По теореме Виета:<br>
+                Сумма корней равна 8, произведение равно 15.<br>
+                Подбираем числа: 3 и 5.<br>
+                <strong>Ответ:</strong> $3; 5$.
+            </div>
+        </div>
+
+        <!-- Задача 8 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 8. Решите дробно-рациональное уравнение: $\frac{2}{x - 1} + \frac{3}{x + 1} = 1$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-8')">Показать решение</button>
+            <div id="sol-8" class="solution-content">
+                <strong>Решение:</strong><br>
+                ОДЗ: $x \neq 1, x \neq -1$.<br>
+                Приводим к общему знаменателю $(x-1)(x+1)$:<br>
+                $2(x+1) + 3(x-1) = (x-1)(x+1)$<br>
+                $2x + 2 + 3x - 3 = x^2 - 1$<br>
+                $5x - 1 = x^2 - 1 \Rightarrow x^2 - 5x = 0$.<br>
+                $x(x - 5) = 0$. Корни: $x_1 = 0$, $x_2 = 5$.<br>
+                Оба корня входят в ОДЗ.<br>
+                <strong>Ответ:</strong> $0; 5$.
+            </div>
+        </div>
+
+        <!-- Задача 9 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 9. Решите неравенство: $x^2 + x - 6 \le 0$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-9')">Показать решение</button>
+            <div id="sol-9" class="solution-content">
+                <strong>Решение:</strong><br>
+                Найдем корни соответствующего уравнения $x^2 + x - 6 = 0$.<br>
+                По теореме Виета:<br>
+                $x_1 + x_2 = -1$, $x_1 \cdot x_2 = -6$.<br>
+                Корни: $x_1 = -3$, $x_2 = 2$.<br><br>
+                
+                Отмечаем точки $-3$ и $2$ на числовой оси. Так как в неравенстве стоит знак $\le$ (меньше или равно), точки будут закрашенными.<br>
+                Так как коэффициент при $x^2$ положительный ($a=1$), ветви параболы направлены вверх. Значит, отрицательные значения функция принимает между корнями.<br><br>
+                
+                Интервал со знаком «минус»: $[-3; 2]$.<br>
+                <strong>Ответ:</strong> $[-3; 2]$.
+            </div>
+        </div>
+
+        <!-- Задача 10 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 10. Решите неполное квадратное уравнение: $3x^2 - 75 = 0$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-10')">Показать решение</button>
+            <div id="sol-10" class="solution-content">
+                <strong>Решение:</strong><br>
+                $3x^2 = 75 \Rightarrow x^2 = 25 \Rightarrow x = \pm 5$.<br>
+                <strong>Ответ:</strong> $-5; 5$.
+            </div>
+        </div>
+
+        <!-- Задача 11 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 11. Решите иррациональное уравнение: $\sqrt{x^2 - 9} = 4$</div>
+            <button class="toggle-btn" onclick="showSolution('sol-11')">Показать решение</button>
+            <div id="sol-11" class="solution-content">
+                <strong>Решение:</strong><br>
+                Возводим обе части в квадрат:<br>
+                $x^2 - 9 = 16 \Rightarrow x^2 = 25$.<br>
+                $x = \pm 5$.<br>
+                Проверка: под корнем получается $25 - 9 = 16 \ge 0$. Условие выполняется.<br>
+                <strong>Ответ:</strong> $-5; 5$.
+            </div>
+        </div>
+
+        <!-- Задача 12 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-hard">Сложный</span>
+            <div class="equation">Задание 12. Один из корней уравнения $x^2 + bx + 18 = 0$ равен $-2$. Найдите второй корень и коэффициент $b$.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-12')">Показать решение</button>
+            <div id="sol-12" class="solution-content">
+                <strong>Решение:</strong><br>
+                Используем теорему Виета ($x_1 \cdot x_2 = c$ и $x_1 + x_2 = -b$).<br>
+                Произведение корней: $(-2) \cdot x_2 = 18 \Rightarrow x_2 = -9$.<br>
+                Сумма корней: $(-2) + (-9) = -b \Rightarrow -11 = -b \Rightarrow b = 11$.<br>
+                <strong>Ответ:</strong> Второй корень $-9$, $b = 11$.
+            </div>
+        </div>
+
+    </section>
+
+    <footer class="page-footer">
+        © 2026 Повторение математики за лето. Не забывайте про проверку корней!
+    </footer>
+</div>
+
+<script>
+    function showSolution(id) {
+        const sol = document.getElementById(id);
+        if (sol.style.display === 'block') {
+            sol.style.display = 'none';
+        } else {
+            sol.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>

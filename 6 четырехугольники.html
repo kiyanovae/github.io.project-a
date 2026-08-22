@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математика 10 класс | Блок 6: Четырехугольники</title>
+    
+    <!-- Подключение стилей из вашего примера -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- MathJax для красивых формул -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['\$', '\$']],
+          displayMath: [['\$$', '\$$']]
+        }
+      };
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --bg-light: #ecf0f1;
+        }
+        
+        .difficulty-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            color: white;
+            margin-right: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-easy { background-color: var(--success-color); }
+        .badge-medium { background-color: var(--warning-color); }
+        .badge-hard { background-color: var(--danger-color); }
+
+        .toggle-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            align-self: flex-start;
+        }
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .solution-content {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #bdc3c7;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .rule-box {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 16px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        /* Стили для статистики */
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        .stats-table th, .stats-table td {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 8px;
+        }
+        .stats-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="page-header card">
+        <h1>Блок 6: Четырехугольники</h1>
+        <p class="subtitle">Повторение площадей, свойств углов и средней линии.</p>
+    </div>
+
+    <!-- ТЕОРИЯ -->
+    <section class="card theory-block">
+        <h2>📘 Теория для повторения</h2>
+        
+        <h3>1. Общие формулы</h3>
+        <div class="formula">Параллелограмм: $S = a h_a$ или $S = ab \sin\alpha$</div>
+        <div class="formula">Трапеция: $S = \frac{a+b}{2} \cdot h$</div>
+        <div class="formula">Ромб: $S = \frac{1}{2} d_1 d_2$</div>
+
+        <h3>2. Свойства основных фигур</h3>
+        <ul>
+            <li><strong>Параллелограмм:</strong> противоположные стороны и углы равны, диагонали точкой пересечения делятся пополам.</li>
+            <li><strong>Прямоугольник:</strong> все углы по $90^\circ$, диагонали равны.</li>
+            <li><strong>Ромб:</strong> диагонали перпендикулярны и являются биссектрисами углов.</li>
+            <li><strong>Квадрат:</strong> обладает всеми свойствами вышеперечисленных фигур.</li>
+            <li><strong>Трапеция:</strong> средняя линия параллельна основаниям и равна их полусумме ($m = \frac{a+b}{2}$). Сумма углов при боковой стороне $180^\circ$.</li>
+        </ul>
+
+        <h3>3. Теорема Фалеса и подобные треугольники</h3>
+        <div class="rule-box"><strong>Важно:</strong> При пересечении двух прямых секущими образуются подобные треугольники. Это главный инструмент для поиска отрезков в трапециях.</div>
+    </section>
+
+    <!-- ПРИМЕРЫ РЕШЕНИЯ -->
+    <section class="card practice-block">
+        <h2>✏️ Примеры решения</h2>
+        <p class="instruction">Разбор типичных задач на площади и высоты.</p>
+
+        <div class="task-card">
+            <div class="equation">Пример 1. Основания трапеции $5$ и $11$, высота $4$. Найдите площадь.</div>
+            <button class="toggle-btn" onclick="showSolution('ex-1')">Показать решение</button>
+            <div id="ex-1" class="solution-content">
+                Используем формулу площади трапеции:<br>
+                $S = \frac{5 + 11}{2} \cdot 4 = \frac{16}{2} \cdot 4 = 8 \cdot 4 = 32$.<br>
+                <strong>Ответ:</strong> $32$.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">Пример 2. В ромбе диагонали $10$ и $24$. Найдите сторону.</div>
+            <button class="toggle-btn" onclick="showSolution('ex-2')">Показать решение</button>
+            <div id="ex-2" class="solution-content">
+                Диагонали ромба пересекаются под прямым углом и делятся пополам.<br>
+                Катеты прямоугольного треугольника: $10/2 = 5$ и $24/2 = 12$.<br>
+                По теореме Пифагора сторона: $\sqrt{5^2 + 12^2} = \sqrt{25+144} = \sqrt{169} = 13$.<br>
+                <strong>Ответ:</strong> $13$.
+            </div>
+        </div>
+    </section>
+
+    <!-- ЗАДАНИЯ ДЛЯ САМОСТОЯТЕЛЬНОГО РЕШЕНИЯ -->
+    <section class="card practice-block">
+        <h2>📝 Задания для самостоятельного решения</h2>
+        <p class="instruction">Решите задачи самостоятельно. Нажмите кнопку под условием, чтобы проверить ответ.</p>
+
+        <!-- Задача 1 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 1. Стороны параллелограмма $10$ и $6$, высота к большей стороне $4$. Найдите площадь.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-1')">Показать решение</button>
+            <div id="sol-1" class="solution-content">
+                <strong>Решение:</strong><br>
+                $S = a \cdot h_a = 10 \cdot 4 = 40$.<br>
+                <strong>Ответ:</strong> $40$.
+            </div>
+        </div>
+
+        <!-- Задача 2 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 2. Один угол параллелограмма равен $55^\circ$. Найдите остальные углы.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-2')">Показать решение</button>
+            <div id="sol-2" class="solution-content">
+                <strong>Решение:</strong><br>
+                Противоположный угол тоже $55^\circ$. Соседние углы в сумме дают $180^\circ$: $180 - 55 = 125^\circ$.<br>
+                <strong>Ответ:</strong> $55^\circ, 125^\circ, 55^\circ, 125^\circ$.
+            </div>
+        </div>
+
+        <!-- Задача 3 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 3. Средняя линия трапеции $15$, меньшее основание $10$. Найдите большее.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-3')">Показать решение</button>
+            <div id="sol-3" class="solution-content">
+                <strong>Решение:</strong><br>
+                $m = \frac{a+b}{2} \Rightarrow 15 = \frac{10+b}{2} \Rightarrow 30 = 10+b \Rightarrow b = 20$.<br>
+                <strong>Ответ:</strong> $20$.
+            </div>
+        </div>
+
+        <!-- Задача 4 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 4. Площадь квадрата $64$. Найдите его периметр.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-4')">Показать решение</button>
+            <div id="sol-4" class="solution-content">
+                <strong>Решение:</strong><br>
+                Сторона $a = \sqrt{64} = 8$.<br>
+                Периметр $P = 4a = 4 \cdot 8 = 32$.<br>
+                <strong>Ответ:</strong> $32$.
+            </div>
+        </div>
+
+        <!-- Задача 5 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 5. В прямоугольнике диагональ $13$, одна сторона $5$. Найдите другую сторону.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-5')">Показать решение</button>
+            <div id="sol-5" class="solution-content">
+                <strong>Решение:</strong><br>
+                По теореме Пифагора: $b = \sqrt{13^2 - 5^2} = \sqrt{169 - 25} = \sqrt{144} = 12$.<br>
+                <strong>Ответ:</strong> $12$.
+            </div>
+        </div>
+
+        <!-- Задача 6 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 6. Основания трапеции $4$ и $10$. Боковая сторона $5$ наклонена к основанию под углом $60^\circ$. Найдите площадь.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-6')">Показать решение</button>
+            <div id="sol-6" class="solution-content">
+                <strong>Решение:</strong><br>
+                Проведем высоту $h$. Из прямоугольного треугольника: $h = 5 \cdot \sin 60^\circ = 5 \cdot \frac{\sqrt{3}}{2}$.<br>
+                $S = \frac{4+10}{2} \cdot \frac{5\sqrt{3}}{2} = 7 \cdot \frac{5\sqrt{3}}{2} = \frac{35\sqrt{3}}{2} = 17,5\sqrt{3}$.<br>
+                <strong>Ответ:</strong> $17,5\sqrt{3}$.
+            </div>
+        </div>
+
+        <!-- Задача 7 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-hard">Сложный</span>
+            <div class="equation">Задание 7. Диагонали ромба относятся как $3:4$, а сторона равна $10$. Найдите площадь.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-7')">Показать решение</button>
+            <div id="sol-7" class="solution-content">
+                <strong>Решение:</strong><br>
+                Пусть половины диагоналей $3x$ и $4x$. По Пифагору: $(3x)^2 + (4x)^2 = 10^2$.<br>
+                $9x^2 + 16x^2 = 100 \Rightarrow 25x^2 = 100 \Rightarrow x^2 = 4 \Rightarrow x = 2$.<br>
+                Полные диагонали: $d_1 = 12, d_2 = 16$.<br>
+                $S = \frac{12 \cdot 16}{2} = 6 \cdot 16 = 96$.<br>
+                <strong>Ответ:</strong> $96$.
+            </div>
+        </div>
+
+        <!-- Задача 8 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-hard">Сложный</span>
+            <div class="equation">Задание 8. В трапеции основания $6$ и $12$. Диагонали пересекаются в точке $O$. Найдите отношение площадей $\triangle BOC$ и $\triangle AOD$.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-8')">Показать решение</button>
+            <div id="sol-8" class="solution-content">
+                <strong>Решение:</strong><br>
+                Треугольники $BOC$ и $AOD$ подобны по двум углам.<br>
+                Коэффициент подобия $k$ равен отношению оснований: $k = 6/12 = 1/2$.<br>
+                Отношение площадей равно квадрату коэффициента подобия: $k^2 = (1/2)^2 = 1/4$.<br>
+                <strong>Ответ:</strong> $1:4$.
+            </div>
+        </div>
+
+        <!-- Задача 9 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 9. Биссектриса угла $A$ параллелограмма делит сторону $BC$ на части $3$ и $5$. Найдите периметр.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-9')">Показать решение</button>
+            <div id="sol-9" class="solution-content">
+                <strong>Решение:</strong><br>
+                Так как это биссектриса накрест лежащие углы равны, значит треугольник отсекаемый ею — равнобедренный.<br>
+                Одна боковая сторона равна $3$ (меньший кусок). Тогда вторая сторона параллелограмма $3+5=8$.<br>
+                $P = 2(3+8) = 22$.<br>
+                <strong>Ответ:</strong> $22$.
+            </div>
+        </div>
+
+        <!-- Задача 10 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 10. В равнобедренной трапеции боковая сторона $13$, основания $10$ и $20$. Найдите площадь.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-10')">Показать решение</strong></button>
+            <div id="sol-10" class="solution-content">
+                <strong>Решение:</strong><br>
+                Проекция боковой стороны на нижнее основание: $(20-10)/2 = 5$.<br>
+                Высота по Пифагору: $h = \sqrt{13^2 - 5^2} = \sqrt{169-25} = 12$.<br>
+                $S = \frac{10+20}{2} \cdot 12 = 15 \cdot 12 = 180$.<br>
+                <strong>Ответ:</strong> $180$.
+            </div>
+        </div>
+
+        <!-- Задача 11 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 11. Вершины четырехугольника $ABCD$ имеют координаты $A(3,7)$, $B(7,7)$, $C(9,3)$, $D(1,3)$. Определите вид фигуры и найдите её площадь.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-11')">Показать решение</button>
+            <div id="sol-11" class="solution-content">
+                <strong>Решение:</strong><br>
+                Стороны $AB$ и $DC$ горизонтальны (ординаты точек одинаковы). Значит, это трапеция.<br>
+                Длина $AB = 7-3 = 4$. Длина $DC = 9-1 = 8$.<br>
+                Высота $h = 7-3 = 4$.<br>
+                $S = \frac{4+8}{2} \cdot 4 = 6 \cdot 4 = 24$.<br>
+                <strong>Ответ:</strong> Трапеция, $24$.
+            </div>
+        </div>
+    </section>
+
+    <footer class="page-footer">
+        © 2026 Повторение математики за лето. Помните: у трапеции высота всегда падает ВНУТРЬ между основаниями!
+    </footer>
+</div>
+
+<script>
+    function showSolution(id) {
+        const sol = document.getElementById(id);
+        if (sol.style.display === 'block') {
+            sol.style.display = 'none';
+        } else {
+            sol.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математика 10 класс | Блок 7: Вероятности и логика</title>
+    
+    <!-- Подключение стилей из вашего примера -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- MathJax для красивых формул -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['\$', '\$']],
+          displayMath: [['\$$', '\$$']]
+        }
+      };
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --bg-light: #ecf0f1;
+        }
+        
+        .difficulty-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            color: white;
+            margin-right: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-easy { background-color: var(--success-color); }
+        .badge-medium { background-color: var(--warning-color); }
+        .badge-hard { background-color: var(--danger-color); }
+
+        .toggle-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            align-self: flex-start;
+        }
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .solution-content {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #bdc3c7;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .rule-box {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 16px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        /* Стили для статистики */
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        .stats-table th, .stats-table td {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 8px;
+        }
+        .stats-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="page-header card">
+        <h1>Блок 7: Логика, вероятность и статистика</h1>
+        <p class="subtitle">Классическое определение вероятности, чтение диаграмм, среднее арифметическое.</p>
+    </div>
+
+    <!-- ТЕОРИЯ -->
+    <section class="card theory-block">
+        <h2>📘 Теория для повторения</h2>
+        
+        <h3>1. Классическая вероятность</h3>
+        <div class="formula">$P(A) = \frac{m}{n}$</div>
+        <ul>
+            <li>$m$ — количество благоприятных исходов;</li>
+            <li>$n$ — общее количество всех равновозможных исходов.</li>
+        </ul>
+        <div class="rule-box"><strong>Важно:</strong> Вероятность всегда находится в пределах от $0$ до $1$. Если нужно найти вероятность противоположного события, вычитайте из единицы: $P(\bar{A}) = 1 - P(A)$.</div>
+
+        <h3>2. Правила "И" и "ИЛИ"</h3>
+        <ul>
+            <li><strong>"ИЛИ" (сложение):</strong> Используется, когда нам подходит или первый вариант, ИЛИ второй.<br>Для несовместных событий: $P(A \cup B) = P(A) + P(B)$.</li>
+            <li><strong>"И" (умножение):</strong> Используется, когда должны произойти оба события одновременно.<br>Для независимых событий: $P(A \cap B) = P(A) \cdot P(B)$.</li>
+        </ul>
+
+        <h3>3. Статистика</h3>
+        <div class="formula">Среднее арифметическое: $\bar{x} = \frac{\sum x_i}{n}$</div>
+        <div class="formula">Размах: $R = x_{max} - x_{min}$</div>
+        <div class="formula">Мода — самое частое значение. Медиана — число, стоящее посередине упорядоченного ряда.</div>
+    </section>
+
+    <!-- ПРИМЕРЫ РЕШЕНИЯ -->
+    <section class="card practice-block">
+        <h2>✏️ Примеры решения</h2>
+        <p class="instruction">Разбор типичных ловушек ОГЭ.</p>
+
+        <div class="task-card">
+            <div class="equation">Пример 1. В среднем из 100 карманных фонариков семь неисправны. Найдите вероятность купить работающий фонарик.</div>
+            <button class="toggle-btn" onclick="showSolution('ex-1')">Показать решение</button>
+            <div id="ex-1" class="solution-content">
+                Всего исходов $n = 100$.<br>
+                Неисправных — 7, значит исправных (благоприятных) $m = 100 - 7 = 93$.<br>
+                $P(A) = \frac{93}{100} = 0,93$.<br>
+                <strong>Ответ:</strong> $0,93$.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">Пример 2. Бросают две игральные кости. Какова сумма очков равна 5?</div>
+            <button class="toggle-btn" onclick="showSolution('ex-2')">Показать решение</button>
+            <div id="ex-2" class="solution-content">
+                Общее число исходов при броске двух костей: $6 \cdot 6 = 36$.<br>
+                Варианты, дающие сумму 5: (1,4), (2,3), (3,2), (4,1). Всего $m = 4$.<br>
+                $P(A) = \frac{4}{36} = \frac{1}{9}$.<br>
+                <strong>Ответ:</strong> $\frac{1}{9}$.
+            </div>
+        </div>
+    </section>
+
+    <!-- ЗАДАНИЯ ДЛЯ САМОСТОЯТЕЛЬНОГО РЕШЕНИЯ -->
+    <section class="card practice-block">
+        <h2>📝 Задания для самостоятельного решения</h2>
+        <p class="instruction">Решите задачи самостоятельно. Нажмите кнопку под условием, чтобы проверить ответ.</p>
+
+        <!-- Задача 1 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 1. На тарелке лежат 15 пирожков: 4 с мясом, 8 с капустой и 3 с вишней. Найдите вероятность взять пирожок с вишней.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-1')">Показать решение</button>
+            <div id="sol-1" class="solution-content">
+                <strong>Решение:</strong><br>
+                Всего $n = 15$, вишня $m = 3$.<br>
+                $P = \frac{3}{15} = \frac{1}{5} = 0,2$.<br>
+                <strong>Ответ:</strong> $0,2$.
+            </div>
+        </div>
+
+        <!-- Задача 2 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 2. Игральную кость бросают один раз. Выпало четное число. Найдите вероятность.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-2')">Показать решение</button>
+            <div id="sol-2" class="solution-content">
+                <strong>Решение:</strong><br>
+                Всего $n = 6$. Четные числа: 2, 4, 6 ($m = 3$).<br>
+                $P = \frac{3}{6} = 0,5$.<br>
+                <strong>Ответ:</strong> $0,5$.
+            </div>
+        </div>
+
+        <!-- Задача 3 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 3. Монету бросают дважды. Какова вероятность выпадения хотя бы одного «орла»?</div>
+            <button class="toggle-btn" onclick="showSolution('sol-3')">Показать решение</button>
+            <div id="sol-3" class="solution-content">
+                <strong>Решение:</strong><br>
+                Все варианты: ОР, РО, РР, ОО. Всего $n = 4$.<br>
+                Без орлов только один вариант — РР ($m = 3$ подходящих).<br>
+                $P = \frac{3}{4} = 0,75$.<br>
+                <strong>Ответ:</strong> $0,75$.
+            </div>
+        </div>
+
+        <!-- Задача 4 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 4. Средний рост игроков команды равен $180$ см. Рост капитана $195$ см. Каков средний рост остальных 9 игроков?</div>
+            <button class="toggle-btn" onclick="showSolution('sol-4')">Показать решение</button>
+            <div id="sol-4" class="solution-content">
+                <strong>Решение:</strong><br>
+                Сумма ростов всей команды: $10 \cdot 180 = 1800$ см.<br>
+                Сумма ростов без капитана: $1800 - 195 = 1605$ см.<br>
+                Средний рост остальных: $1605 / 9 = 178,33...$ см.<br>
+                <strong>Ответ:</strong> примерно $178,3$ см.
+            </div>
+        </div>
+
+        <!-- Задача 5 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 5. В фирме такси 15 машин: 3 синих, 6 желтых, остальные зеленые. Вызов приняла зеленая машина. Найдите вероятность этого события.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-5')">Показать решение</button>
+            <div id="sol-5" class="solution-content">
+                <strong>Решение:</strong><br>
+                Зеленых машин: $15 - 3 - 6 = 6$.<br>
+                $P = \frac{6}{15} = \frac{2}{5} = 0,4$.<br>
+                <strong>Ответ:</strong> $0,4$.
+            </div>
+        </div>
+
+        <!-- Задача 6 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 6. Из слова МАТЕМАТИКА случайным образом выбирают одну букву. Найдите вероятность выбрать букву «А».</div>
+            <button class="toggle-btn" onclick="showSolution('sol-6')">Показать решение</button>
+            <div id="sol-6" class="solution-content">
+                <strong>Решение:</strong><br>
+                Всего букв $n = 10$. Буква «А» встречается 3 раза ($m = 3$).<br>
+                $P = \frac{3}{10} = 0,3$.<br>
+                <strong>Ответ:</strong> $0,3$.
+            </div>
+        </div>
+
+        <!-- Задача 7 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 7. В мешке 20 шаров: 10 красных, 5 синих, остальные белые.Найдите вероятность достать НЕ белый шар.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-7')">Показать решение</button>
+            <div id="sol-7" class="solution-content">
+                <strong>Решение:</strong><br>
+                Небелых шаров: $10 + 5 = 15$.<br>
+                $P = \frac{15}{20} = \frac{3}{4} = 0,75$.<br>
+                <strong>Ответ:</strong> $0,75$.
+            </div>
+        </div>
+
+        <!-- Задача 8 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 8. Вероятность того, что новая лампочка перегорит в течение года — $0,05$. Найдите вероятность, что проработает больше года.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-8')">Показать решение</button>
+            <div id="sol-8" class="solution-content">
+                <strong>Решение:</strong><br>
+                Противоположное событие: $1 - 0,05 = 0,95$.<br>
+                <strong>Ответ:</strong> $0,95$.
+            </div>
+        </div>
+
+        <!-- Задача 9 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 9. Симметричную монету бросают трижды. Найдите вероятность того, что решка выпадет ровно два раза.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-9')">Показать решение</button>
+            <div id="sol-9" class="solution-content">
+                <strong>Решение:</strong><br>
+                Всего исходов $2^3 = 8$.<br>
+                Благоприятные (РРО, РОР, ОРР): $m = 3$.<br>
+                $P = \frac{3}{8} = 0,375$.<br>
+                <strong>Ответ:</strong> $0,375$.
+            </div>
+        </div>
+
+        <!-- Задача 10 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 10. Стрелок попадает в цель с вероятностью $0,8$. Три выстрела. Найдите вероятность попасть все три раза.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-10')">Показать решение</button>
+            <div id="sol-10" class="solution-content">
+                <strong>Решение:</strong><br>
+                События независимы, используем правило «И»:<br>
+                $P = 0,8 \cdot 0,8 \cdot 0,8 = 0,512$.<br>
+                <strong>Ответ:</strong> $0,512$.
+            </div>
+        </div>
+
+
+        <!-- Задача 11 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 11. Вероятность дождей в субботу $0,4$, в воскресенье $0,6$. Найти вероятность дождя хотя бы в один день.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-12')">Показать решение</button>
+            <div id="sol-12" class="solution-content">
+                <strong>Решение:</strong><br>
+                Проще найти обратное (солнечно и там, и там): $(1-0,4) \cdot (1-0,6) = 0,6 \cdot 0,4 = 0,24$.<br>
+                Тогда дождь хотя бы раз: $1 - 0,24 = 0,76$.<br>
+                <strong>Ответ:</strong> $0,76$.
+            </div>
+        </div>
+
+        <!-- Задача 12 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-hard">Сложный</span>
+            <div class="equation">Задание 12. Биатлонист попадает с вероятностью $0,9$. Ему нужно закрыть 5 мишеней. Найдите вероятность промахнуться ровно один раз.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-13')">Показать решение</button>
+            <div id="sol-13" class="решение-content">
+                <strong>Решение:</strong><br>
+                Промах может быть любым по счету (1-м, 2-м ... 5-м).<br>
+                Вероятность одной комбинации (например, ПППНП): $0,9^4 \cdot 0,1 = 0,06561$.<br>
+                Таких комбинаций 5 штук.<br>
+                $P = 5 \cdot 0,06561 = 0,32805$.<br>
+                <strong>Ответ:</strong> $0,32805$.
+            </div>
+        </div>
+
+        <!-- Задача 13 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 13. На экзамене 25 билетов. Студент знает 20. Найти вероятность вытянуть неизвестный билет.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-14')">Показать решение</button>
+            <div id="sol-14" class="solution-content">
+                <strong>Решение:</strong><br>
+                Всего $n = 25$. Неизвестных $m = 25 - 20 = 5$.<br>
+                $P = \frac{5}{25} = \frac{1}{5} = 0,2$.<br>
+                <strong>Ответ:</strong> $0,2$.
+            </div>
+        </div>
+
+        <!-- Задача 14 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-hard">Сложный</span>
+            <div class="equation">Задание 14. В вазе 5 яблок и 7 груш. Берут 2 фрукта. Найдите вероятность, что они одинаковые.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-15')">Показать решение</button>
+            <div id="sol-15" class="solution-content">
+                <strong>Решение:</strong><br>
+                Всего фруктов $12$. Способов взять 2 любых: $C_{12}^2 = \frac{12 \cdot 11}{2} = 66$.<br>
+                Способы взять 2 яблока: $C_5^2 = \frac{5 \cdot 4}{2} = 10$.<br>
+                Способы взять 2 груши: $C_7^2 = \frac{7 \cdot 6}{2} = 21$.<br>
+                Всего подходящих: $10 + 21 = 31$.<br>
+                $P = \frac{31}{66}$.<br>
+                <strong>Ответ:</strong> $\frac{31}{66}$.
+            </div>
+        </div>
+    </section>
+
+    <footer class="page-footer">
+        © 2026 Повторение математики за лето. Главное в вероятности — правильно посчитать знаменатель!
+    </footer>
+</div>
+
+<script>
+    function showSolution(id) {
+        const sol = document.getElementById(id);
+        if (sol.style.display === 'block') {
+            sol.style.display = 'none';
+        } else {
+            sol.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>

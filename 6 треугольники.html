@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математика 10 класс | Блок 6: Треугольники</title>
+    
+    <!-- Подключение стилей из вашего примера -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- MathJax для красивых формул -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['\$', '\$']],
+          displayMath: [['\$$', '\$$']]
+        }
+      };
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #27ae60;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --bg-light: #ecf0f1;
+        }
+        
+        .difficulty-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            color: white;
+            margin-right: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-easy { background-color: var(--success-color); }
+        .badge-medium { background-color: var(--warning-color); }
+        .badge-hard { background-color: var(--danger-color); }
+
+        .toggle-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            align-self: flex-start;
+        }
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .solution-content {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #bdc3c7;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .rule-box {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 16px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        /* Стили для геометрических чертежей */
+        .geom-note {
+            font-style: italic;
+            color: #555;
+            margin-top: 5px;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="page-header card">
+        <h1>Блок 6: Планиметрия (Треугольники)</h1>
+        <p class="subtitle">Повторение площадей, теоремы Пифагора, синусов, косинусов и медиан.</p>
+    </div>
+
+    <!-- ТЕОРИЯ -->
+    <section class="card theory-block">
+        <h2>📘 Теория для повторения</h2>
+        
+        <h3>1. Площадь треугольника</h3>
+        <div class="formula">$S = \frac{1}{2} a h_a$</div>
+        <div class="formula">$S = \frac{1}{2} ab \sin\gamma$</div>
+        <div class="formula">Формула Герона: $S = \sqrt{p(p-a)(p-b)(p-c)}$, где $p = \frac{a+b+c}{2}$</div>
+
+        <h3>2. Прямоугольный треугольник</h3>
+        <div class="formula">Теорема Пифагора: $a^2 + b^2 = c^2$</div>
+        <div class="formula">$\sin\alpha = \frac{a}{c}, \cos\alpha = \frac{b}{c}, \tan\alpha = \frac{a}{b}$</div>
+        <div class="rule-box"><strong>Важно:</strong> Центр описанной окружности лежит на середине гипотенузы ($R = \frac{c}{2}$). Радиус вписанной: $r = \frac{a+b-c}{2}$.</div>
+
+        <h3>3. Произвольный треугольник</h3>
+        <div class="formula">Теорема косинусов: $c^2 = a^2 + b^2 - 2ab\cos\gamma$</div>
+        <div class="formula">Теорема синусов: $\frac{a}{\sin\alpha} = \frac{b}{\sin\beta} = \frac{c}{\sin\gamma} = 2R$</div>
+        <div class="formula">Сумма углов: $\alpha + \beta + \gamma = 180^\circ$</div>
+
+        <h3>4. Медианы и подобие</h3>
+        <ul>
+            <li><strong>Медиана:</strong> делит треугольник на два равновеликих (равных по площади). Три медианы делятся точкой пересечения в отношении $2:1$, считая от вершины.</li>
+            <li><strong>Средняя линия:</strong> равна половине основания и параллельна ему.</li>
+            <li><strong>Подобие:</strong> углы равны, стороны пропорциональны. Отношение площадей равно квадрату коэффициента подобия.</li>
+        </ul>
+    </section>
+
+    <!-- ПРИМЕРЫ РЕШЕНИЯ -->
+    <section class="card practice-block">
+        <h2>✏️ Примеры решения</h2>
+        <p class="instruction">Разбор типичных ловушек с площадями и высотами.</p>
+
+        <div class="task-card">
+            <div class="equation">Пример 1. Стороны треугольника $13, 14, 15$. Найдите высоту, проведенную к стороне $14$.</div>
+            <button class="toggle-btn" onclick="showSolution('ex-1')">Показать решение</button>
+            <div id="ex-1" class="solution-content">
+                Используем формулу Герона.<br>
+                Полупериметр $p = \frac{13+14+15}{2} = 21$.<br>
+                $S = \sqrt{21(21-13)(21-14)(21-15)} = \sqrt{21 \cdot 8 \cdot 7 \cdot 6} = \sqrt{7056} = 84$.<br>
+                С другой стороны $S = \frac{1}{2} \cdot 14 \cdot h$.<br>
+                $84 = 7h \Rightarrow h = 12$.<br>
+                <strong>Ответ:</strong> $12$.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">Пример 2. В прямоугольном треугольнике катеты $5$ и $12$. Найдите медиану, проведенную к гипотенузе.</div>
+            <button class="toggle-btn" onclick="showSolution('ex-2')">Показать решение</button>
+            <div id="ex-2" class="solution-content">
+                Находим гипотенузу по Пифагору: $c = \sqrt{5^2 + 12^2} = \sqrt{25+144} = 13$.<br>
+                Медиана, проведенная к гипотенузе, равна ее половине.<br>
+                $m = \frac{13}{2} = 6,5$.<br>
+                <strong>Ответ:</strong> $6,5$.
+            </div>
+        </div>
+    </section>
+
+    <!-- ЗАДАНИЯ ДЛЯ САМОСТОЯТЕЛЬНОГО РЕШЕНИЯ -->
+    <section class="card practice-block">
+        <h2>📝 Задания для самостоятельного решения</h2>
+        <p class="instruction">Решите задачи самостоятельно. Нажмите кнопку под условием, чтобы проверить ответ.</p>
+
+        <!-- Задача 1 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 1. Катеты прямоугольного треугольника $6$ и $8$. Найдите гипотенузу.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-1')">Показать решение</button>
+            <div id="sol-1" class="solution-content">
+                <strong>Решение:</strong><br>
+                По теореме Пифагора: $c = \sqrt{6^2 + 8^2} = \sqrt{36+64} = \sqrt{100} = 10$.<br>
+                <strong>Ответ:</strong> $10$.
+            </div>
+        </div>
+
+        <!-- Задача 2 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 2. Основание треугольника $10$, высота $6$. Найдите площадь.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-2')">Показать решение</button>
+            <div id="sol-2" class="solution-content">
+                <strong>Решение:</strong><br>
+                $S = \frac{1}{2} \cdot 10 \cdot 6 = 30$.<br>
+                <strong>Ответ:</strong> $30$.
+            </div>
+        </div>
+
+        <!-- Задача 3 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 3. Углы треугольника $40^\circ$ и $60^\circ$. Найдите третий угол.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-3')">Показать решение</button>
+            <div id="sol-3" class="solution-content">
+                <strong>Решение:</strong><br>
+                $180^\circ - (40^\circ + 60^\circ) = 80^\circ$.<br>
+                <strong>Ответ:</strong> $80^\circ$.
+            </div>
+        </div>
+
+        <!-- Задача 4 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 4. Стороны треугольника $7$ и $8$, угол между ними $60^\circ$. Найдите площадь.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-4')">Показать решение</button>
+            <div id="sol-4" class="solution-content">
+                <strong>Решение:</strong><br>
+                $S = \frac{1}{2} \cdot 7 \cdot 8 \cdot \sin 60^\circ = 28 \cdot \frac{\sqrt{3}}{2} = 14\sqrt{3}$.<br>
+                <strong>Ответ:</strong> $14\sqrt{3}$.
+            </div>
+        </div>
+
+        <!-- Задача 5 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 5. Средняя линия треугольника отсекает треугольник площадью $12$. Найдите площадь исходного.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-5')">Показать решение</button>
+            <div id="sol-5" class="solution-content">
+                <strong>Решение:</strong><br>
+                Коэффициент подобия $k = 2$ (средняя линия в 2 раза меньше основания).<br>
+                Отношение площадей $k^2 = 4$.<br>
+                $S_{общ} = 12 \cdot 4 = 48$.<br>
+                <strong>Ответ:</strong> $48$.
+            </div>
+        </div>
+
+        <!-- Задача 6 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-easy">Легкий</span>
+            <div class="equation">Задание 6. Периметр равностороннего треугольника $24$. Найдите высоту.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-6')">Показать решение</button>
+            <div id="sol-6" class="solution-content">
+                <strong>Решение:</strong><br>
+                Сторона $a = 24 / 3 = 8$.<br>
+                Высота $h = \frac{a\sqrt{3}}{2} = \frac{8\sqrt{3}}{2} = 4\sqrt{3}$.<br>
+                <strong>Ответ:</strong> $4\sqrt{3}$.
+            </div>
+        </div>
+
+        <!-- Задача 7 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 7. Гипотенуза $10$, катет $6$. Найдите второй катет.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-7')">Показать решение</button>
+            <div id="sol-7" class="solution-content">
+                <strong>Решение:</strong><br>
+                $b = \sqrt{10^2 - 6^2} = \sqrt{100-36} = \sqrt{64} = 8$.<br>
+                <strong>Ответ:</strong> $8$.
+            </div>
+        </div>
+
+        <!-- Задача 8 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 8. Две стороны треугольника $5$ и $6$, а угол между ними $120^\circ$. Найдите третью сторону.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-8')">Показать решение</button>
+            <div id="sol-8" class="solution-content">
+                <strong>Решение:</strong><br>
+                По теореме косинусов:<br>
+                $c^2 = 5^2 + 6^2 - 2 \cdot 5 \cdot 6 \cdot \cos 120^\circ$.<br>
+                $\cos 120^\circ = -0,5$.<br>
+                $c^2 = 25 + 36 - 60 \cdot (-0,5) = 61 + 30 = 91$.<br>
+                $c = \sqrt{91}$.<br>
+                <strong>Ответ:</strong> $\sqrt{91}$.
+            </div>
+        </div>
+
+        <!-- Задача 9 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 9. Медианы $AD$ и $BE$ пересекаются в точке $O$. $AO = 6$. Найдите длину всей медианы $AD$.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-9')">Показать решение</button>
+            <div id="sol-9" class="solution-content">
+                <strong>Решение:</strong><br>
+                Точка пересечения медиан делит их в отношении $2:1$ от вершины.<br>
+                Значит, $AO$ — это две части, а $OD$ — одна часть.<br>
+                Если $AO = 6$, то $OD = 3$.<br>
+                Вся медиана $AD = AO + OD = 6 + 3 = 9$.<br>
+                <strong>Ответ:</strong> $9$.
+            </div>
+        </div>
+
+        <!-- Задача 10 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-medium">Средний</span>
+            <div class="equation">Задание 10. Стороны треугольника относятся как $3:4:5$. Периметр $24$. Найдите площадь.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-10')">Показать решение</button>
+            <div id="sol-10" class="solution-content">
+                <strong>Решение:</strong><br>
+                Это египетский треугольник (прямоугольный), так как $3^2+4^2=5^2$.<br>
+                Одна часть $x$: $3x+4x+5x=24 \Rightarrow 12x=24 \Rightarrow x=2$.<br>
+                Стороны: $6, 8, 10$.<br>
+                Площадь: $S = \frac{1}{2} \cdot 6 \cdot 8 = 24$.<br>
+                <strong>Ответ:</strong> $24$.
+            </div>
+        </div>
+
+        <!-- Задача 11 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-hard">Сложный</span>
+            <div class="equation">Задание 11. В треугольнике со сторонами $13, 14, 15$ найдите радиус вписанной окружности.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-11')">Показать решение</button>
+            <div id="sol-11" class="solution-content">
+                <strong>Решение:</strong><br>
+                Из задания №1 мы знаем, что площадь $S = 84$.<br>
+                Полупериметр $p = 21$.<br>
+                Формула: $S = p \cdot r \Rightarrow r = S / p$.<br>
+                $r = 84 / 21 = 4$.<br>
+                <strong>Ответ:</strong> $4$.
+            </div>
+        </div>
+
+        <!-- Задача 12 -->
+        <div class="task-card">
+            <span class="difficulty-badge badge-hard">Сложный</span>
+            <div class="equation">Задание 12. Биссектриса угла $A$ делит сторону $BC$ на отрезки $6$ и $10$. Сторона $AB = 15$. Найдите $AC$.</div>
+            <button class="toggle-btn" onclick="showSolution('sol-12')">Показать решение</button>
+            <div id="sol-12" class="solution-content">
+                <strong>Решение:</strong><br>
+                Свойство биссектрисы: она делит противоположную сторону на отрезки, пропорциональные прилежащим сторонам.<br>
+                $\frac{AB}{AC} = \frac{BD}{DC} \Rightarrow \frac{15}{AC} = \frac{6}{10}$.<br>
+                $6 \cdot AC = 150 \Rightarrow AC = 25$.<br>
+                <strong>Ответ:</strong> $25$.
+            </div>
+        </div>
+    </section>
+
+    <footer class="page-footer">
+        © 2026 Повторение математики за лето. Рисуйте отдельный чертеж к каждой задаче!
+    </footer>
+</div>
+
+<script>
+    function showSolution(id) {
+        const sol = document.getElementById(id);
+        if (sol.style.display === 'block') {
+            sol.style.display = 'none';
+        } else {
+            sol.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
