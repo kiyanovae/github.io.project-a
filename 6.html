@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математика 10 класс | §6. Степенная функция</title>
+    
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- MathJax для красивых формул (взято из примера) -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']]
+        }
+      };
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --bg-light: #ecf0f1;
+        }
+        
+        .toggle-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            align-self: flex-start;
+            margin-top: 5px;
+        }
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .solution-content {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #bdc3c7;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .rule-box {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 16px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .block-title {
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        table.properties {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            text-align: left;
+        }
+        table.properties th, table.properties td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        table.properties th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="page-header card">
+        <h1>§ 6. Степенная функция: её свойства и график</h1>
+        <p class="subtitle">Определение функции $y=x^p$, зависимость свойств от показателя степени.</p>
+    </div>
+
+    <!-- ТЕОРИЯ -->
+    <section class="card theory-block">
+        <h2>📘 Введение</h2>
+        <p>Вы знакомы с функциями $y = x$, $y = x^2$, $y = x^3$ и т.д. Все эти функции являются частными случаями степенной функции. Как алгебраисты вместо записи повторяющихся множителей ($ААА...$) пишут степени ($A^n$), так Исаак Ньютон предложил запись для дробных показателей ($\frac{1}{a}$, $\frac{1}{a^2}$).</p>
+
+        <h3>Определение</h3>
+        <p>Функцией вида $y=x^p$, где $p$ — заданное действительное число, называется степенной функцией*.</p>
+        <div class="rule-box"><strong>Важно:</strong> Свойства этой функции зависят от свойств показателя степени $p$. Рассмотрим их подробно в зависимости от того, при каких значениях $x$ и $p$ имеет смысл степень $x^p$.</div>
+
+        <h3>Общие понятия о функциях (стр. 40–41)</h3>
+        <table class="properties">
+            <thead>
+                <tr>
+                    <th>Термин</th>
+                    <th>Определение</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Ограничена снизу</strong></td>
+                    <td>Функция ограничена снизу на множестве $X$, если существует число $C_1$ такое, что для любого $x \in X$ выполняется неравенство $f(x)\geqslant C_1$. Это значит, что все точки графика лежат выше прямой $y=C_1$ или на ней. (Пример: $y=x^2-2x=(x-1)^2-1$ ограничена снизу числом $-1$).</td>
+                </tr>
+                <tr>
+                    <td><strong>Ограничена сверху</strong></td>
+                    <td>Функция ограничена сверху на множестве $X$, если существует число $C_2$ такое, что для любого $x \in X$ выполняется неравенство $f(x)\leqslant C_2$. Это значит, что все точки графика лежат ниже прямой $y=C_2$ или на ней. (Пример: $y=-x^2+2x+3=4-(x+1)^2$ ограничена сверху числом $4$).</td>
+                </tr>
+                <tr>
+                    <td><strong>Ограничена</strong></td>
+                    <td>Функция является ограниченной тогда и только тогда, когда она ограничена и сверху, и снизу. Для этого должно существовать число $C>0$ такое, что $|f(x)|<C$.</td>
+                </tr>
+                <tr>
+                    <td><strong>Наименьшее значение</strong></td>
+                    <td>Если существует такое значение $x_0$ из области определения, что для любого $x$ справедливо $f(x)\ge f(x_0)$, то говорят, что функция принимает наименьшее значение $y_0=f(x_0)$ при $x=x_0$. Например, у функции $y=x^2-2x$ это значение равно $-1$ при $x=1$.</td>
+                </tr>
+                <tr>
+                    <td><strong>Наибольшее значение</strong></td>
+                    <td>Аналогично определяется наибольшее значение.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>(Эти термины иллюстрируются рисунками 6 и 7).</p>
+    </section>
+
+    <!-- СВОЙСТВА ПО ПОКАЗАТЕЛЯМ -->
+    <section class="card practice-block">
+        <h2>✏️ Свойства степенных функций в зависимости от показателя p</h2>
+
+        <div class="block-title">1. Показатель $r=2n$ — чётное натуральное число $(n\ge 2)$</div>
+        <p>Запись: $y=x^{2n}$</p>
+        <ul>
+            <li><strong>Область определения:</strong> Множество всех действительных чисел $\mathbb{R}$.</li>
+            <li><strong>Множество значений:</strong> Неотрицательные числа $y\geqslant 0$.</li>
+            <li><strong>Чётность/Нечётность:</strong> Чётная, так как $(-x)^{2n}=x^{2n}$. График симметричен относительно оси ординат.</li>
+            <li><strong>Монотонность:</strong> Убывает на промежутке $(-\infty;0]$ и возрастает на $[0;+\infty)$.</li>
+            <li><strong>Ограниченность:</strong> Ограничена снизу.</li>
+            <li><strong>Экстремумы:</strong> Принимает единственное наименьшее значение $y=0$ при $x=0$.</li>
+            <p>График: Имеет вид параболы. Чем больше показатель, тем круче ветви уходят к краям.</p>
+<img src="" alt="8a" style="width: 100%; display: block; margin-top: 40px;" />
+       </ul>
+<br>
+        <div class="block-title">2. Показатель $r=2n{-}1$ — нечётное натуральное число</div>
+        <p>Запись: $y=x^{2n-1}$</p>
+        <ul>
+            <li><strong>Область определения:</strong> $\mathbb{R}$.</li>
+            <li><strong>Множество значений:</strong> $\mathbb{R}$.</li>
+            <li><strong>Чётность/Нечётность:</strong> Нечётная, так как $(-x)^{2n-1}=-x^{2n-1}$. Симметрия относительно начала координат.</li>
+            <li><strong>Монотонность:</strong> Возрастает на всей числовой прямой.</li>
+            <li><strong>Ограниченность:</strong> Не ограничена ни сверху, ни снизу.</li>
+            <li><strong>Экстремумы:</strong> Нет ни наибольшего, ни наименьшего значения.</li>
+            <li><strong>График:</strong> Похож на кубическую параболу $y=x^3$ .</li>
+<img src="" alt="8b" style="width: 100%; display: block; margin-top: 40px;" />
+        </ul>
+<br>
+        <div class="block-title">3. Показатель $r=-2n$ — отрицательное целое чётное число</div>
+        <p>Запись: $y=\dfrac{1}{x^{2n}}$</p>
+        <ul>
+            <li><strong>Область определения:</strong> $\mathbb{R}\setminus\{0\}$.</li>
+            <li><strong>Множество значений:</strong> Положительные числа $y > 0$.</li>
+            <li><strong>Чётность/Нечётность:</strong> Чётная.</li>
+            <li><strong>Монотонность:</strong> Возрастающая на $(-\infty;0)$ и убывающая на $(0;+\infty)$. Ветви стремятся вверх при приближении к нулю слева и справа.</li>
+            <li><strong>Ограниченность:</strong> Ограничена снизу.</li>
+            <li><strong>Особые линии:</strong> Прямая $y=0$ (ось абсцисс) — горизонтальная асимптота. Прямая $x=0$ (ось ординат) — вертикальная асимптота.</li>
+            <img src="" alt="9" style="width: 100%; display: block; margin-top: 40px;" />
+        </ul>
+<br>
+        <div class="block-title">4. Показатель $r=-(2n{-}1)$ — отрицательное целое нечётное число</div>
+        <p>Запись: $y=\dfrac{1}{x^{2n-1}}$</p>
+        <ul>
+            <li><strong>Область определения:</strong> $\mathbb{R}\setminus\{0\}$.</li>
+            <li><strong>Множество значений:</strong> Всё множество $\mathbb{R}$, кроме $y=0$.</li>
+            <li><strong>Чётность/Нечётность:</strong> Нечётная.</li>
+            <li><strong>Монотонность:</strong> Убывает на каждом из интервалов $(-\infty;0)$ и $(0;+\infty)$.</li>
+            <li><strong>Ограниченность:</strong> Не ограничена.</li>
+            <li><strong>Особые линии:</strong> Горизонтальная и вертикальная асимптоты совпадают с предыдущим случаем.</li>
+            <img src="" alt="10" style="width: 100%; display: block; margin-top: 40px;" />
+        </ul>
+<br>
+        <div class="block-title">5*. Показатель $r$ — положительное нецелое число</div>
+        <p>Запись: $y=x^{\alpha}$, где $\alpha$ — несократимая дробь или иррациональное число.</p>
+        <ul>
+            <li><strong>Область определения:</strong> Только неотрицательные числа $x \ge 0$.</li>
+            <li><strong>Множество значений:</strong> Только неотрицательные числа $y \ge 0$.</li>
+            <li><strong>Чётность/Нечётность:</strong> Ни чётная, ни нечётная.</li>
+            <li><strong>Монотонность:</strong> Всегда возрастающая на $[0; +\infty)$.</li>
+            <li><strong>Ограниченность:</strong> Ограничена снизу.</li>
+            <li><strong>Примеры графиков:</strong> $y=x^\frac{1}{3}=\sqrt[3]{x}$ (возрастает медленно вблизи нуля, затем ускоряется); $y=x^\frac{4}{3}$ (похоже на $y=x^2$, но более пологая ветвь возле нуля и более крутой рост вдали от него).</li>
+            <img src="" alt="11a" style="width: 100%; display: block; margin-top: 40px;" />
+<img src="" alt="11b" style="width: 100%; display: block; margin-top: 40px;" />
+        </ul>
+<br>
+        <div class="block-title">6*. Показатель $r$ — отрицательное нецелое число</div>
+        <p>Запись: $y=x^{-\alpha} = \frac{1}{x^{\alpha}}$, где $\alpha$ — несократимая дробь или иррациональное число.</p>
+        <ul>
+            <li><strong>Область определения:</strong> Только положительные числа $x > 0$.</li>
+            <li><strong>Множество значений:</strong> Только положительные числа $y > 0$.</li>
+            <li><strong>Чётность/Нечётность:</strong> Ни чётная, ни нечётная.</li>
+            <li><strong>Монотонность:</strong> Убывает на $(0; +\infty)$.</li>
+            <li><strong>Ограниченность:</strong> Ограничена снизу.</li>
+            <li><strong>Особенности:</strong> Левый конец графика уходит в бесконечность при стремлении аргумента к нулю, правый — стремится к нулю при росте аргумента.</li>
+            <img src="" alt="9" style="width: 100%; display: block; margin-top: 40px;" />
+        </ul>
+    </section>
+
+    <!-- ВАЖНЫЕ ЗАМЕЧАНИЯ -->
+    <section class="card rule-box">
+        <h2>❗ Важные замечания об асимптотах (стр. 42–43)</h2>
+        <p>Для функций с отрицательным показателем существуют особые прямые, к которым график бесконечно близко подходит, но никогда их не пересекает.</p>
+        <ul>
+            <li><strong>Горизонтальная асимптота:</strong> прямая $y=0$ (ось абсцисс), например, для $y=x^{-2n}$.</li>
+            <li><strong>Вертикальная асимптота:</strong> прямая $x=0$ (ось ординат), например, для любой дробной функции $y=\frac{1}{x^k}$.</li>
+            <li><strong>Пример:</strong> для $y=x^{-3}$ обе эти прямые являются асимптотами. Расстояние между точками графика и осью ординат становится сколь угодно малым при $x\to 0$.</li>
+        </ul>
+    </section>
+
+    <!-- ПРИМЕРЫ РЕШЕНИЯ ЗАДАЧ -->
+    <section class="card practice-block">
+        <h2>📜 Примеры решения задач (стр. 45–46)</h2>
+
+        <div class="block-title">Задача 1. Найти наибольшее и наименьшее значения функции $y=x^6$ на отрезке $\left[-2;\frac{1}{2}\right]$.</div>
+        <button class="toggle-btn" onclick="showSolution('task-1')">Показать решение</button>
+        <div id="task-1" class="solution-content">
+            Так как $y=x^6$ — чётная функция, достаточно рассмотреть промежуток $[0; \frac{1}{2}]$. На этом промежутке функция возрастает, поэтому минимальное значение достигается в точке $x=0$: $y_{\text{min}} = y(0)=0$.<br>
+            Максимальное значение ищем среди концов исходного отрезка: $y(-2)=64$ и $y\left(\frac{1}{2}\right)=\frac{1}{64}$. Наибольшим является первое число: $y_{\text{max}} = y(-2)=64$.
+        </div>
+
+        <div class="block-title">Задача 2. Построить график функции $y=-(x+1)^5 + 2$.</div>
+        <button class="toggle-btn" onclick="showSolution('task-2')">Показать решение</button>
+        <div id="task-2" class="solution-content">
+            Строится базовый график $y=x^5$. Затем последовательно выполняются преобразования: сдвиг вдоль оси абсцисс на 1 единицу влево → отражение относительно оси $OX$ → сдвиг вдоль оси ординат на 2 единицы вверх. Итоговый график изображён на рисунке 13.
+        </div>
+
+        <div class="block-title">Задача 3*. Найти точки пересечения графиков функций $y=\sqrt[3]{x}$ и $y=x^{4/5}$.</div>
+        <button class="toggle-btn" onclick="showSolution('task-3')">Показать решение</button>
+        <div id="task-3" class="solution-content">
+            Составляем уравнение $\sqrt[3]{x} = x^{4/5}$. Домножив обе части на 3, получаем эквивалентную форму: $x^{1/3} = x^{4/5}$.<br>
+            Левая часть уравнения имеет смысл при любых $x$, правая — только при $x \ge 0$. Следовательно, решаем его на полуоси $[0; +\infty)$.<br>
+            Возводим обе части в куб: $x = x^{12/5}$. Переносим всё в одну сторону: $x(x^{7/5}-1)=0$.<br>
+            Отсюда корни: $x_1=0$ и $x_2=1$. Проверкой убеждаемся, что оба корня подходят.<br>
+            <strong>Ответ:</strong> $(0;0)$ и $(1;1)$.
+        </div>
+    </section>
+
+    <footer class="page-footer">
+        © 2026 Математика 10 класс. Материал Елизаветы Кияновой.
+    </footer>
+</div>
+
+<script>
+    function showSolution(id) {
+        const sol = document.getElementById(id);
+        if (sol.style.display === 'block') {
+            sol.style.display = 'none';
+        } else {
+            sol.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
