@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сборник теорем по стереометрии</title>
+    
+    <!-- Подключение ваших основных стилей -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- MathJax для формул (оставлен для единообразия, если захотите добавить формулы) -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']]
+        }
+      };
+    </script>
+
+    <style>
+        /* Дополнительные стили для этого конкретного урока */
+        :root {
+            --primary-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --bg-light: #ecf0f1;
+        }
+
+        .page-header {
+            background-image: none;
+        }
+
+        .theorem-visual {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #bdc3c7;
+            animation: fadeIn 0.3s ease-in;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .theorem-visual strong {
+            color: #2c3e50;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="page-header card">
+        <h1>Сборник теорем по стереометрии</h1>
+        <p class="subtitle">Основные аксиомы и признаки параллельности для 10 класса</p>
+    </div>
+
+    <section class="card practice-block">
+        <h2>📚 Основные теоремы</h2>
+        
+        <div class="task-card">
+            <div class="equation">1. Через любые 3 точки, не лежащие на одной прямой, проходит плоскость, и притом только одна.</div>
+            <button class="toggle-btn" onclick="showVisual('vis-1')">Показать визуализацию</button>
+            <div id="vis-1" class="theorem-visual">
+                <strong>Чертеж:</strong> Представьте штатив или табуретку на трех ножках. Как бы ни были расположены концы ножек (если они не в линию), они всегда плотно стоят на полу (в плоскости). Четвертая ножка может висеть в воздухе, если пол неровный.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">2. Если две точки прямой лежат в плоскости, то все точки прямой лежат в этой плоскости</div>
+            <button class="toggle-btn" onclick="showVisual('vis-2')">Показать визуализацию</button>
+            <div id="vis-2" class="theorem-visual">
+                <strong>Чертеж:</strong> Карандаш, лежащий на открытой тетради. Если две его точки касаются бумаги, то и весь карандаш плотно прижат к листу.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">3. Если 2 плоскости имеют общую точку, то они имеют общую прямую, на которой лежат все общие точки этих плоскостей</div>
+            <button class="toggle-btn" onclick="showVisual('vis-3')">Показать визуализацию</button>
+            <div id="vis-3" class="theorem-visual">
+                <strong>Чертеж:</strong> Угол комнаты (стык двух стен) или открытый ноутбук. Плоскости не могут соприкоснуться только в одной точке — они всегда «раскрываются» относительно общей линии.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">4. Через прямую и не лежащую на ней точку проходит плоскость, и притом только одна</div>
+            <button class="toggle-btn" onclick="showVisual('vis-4')">Показать визуализацию</button>
+            <div id="vis-4" class="theorem-visual">
+                <strong>Чертеж:</strong> Натянутая нить (прямая) и палец (точка), который её не касается. Существует только один способ положить плоский лист бумаги так, чтобы он коснулся и нити, и пальца.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">5. Через 2 пересекающиеся прямые проходит плоскость, и притом только одна</div>
+            <button class="toggle-btn" onclick="showVisual('vis-5')">Показать визуализацию</button>
+            <div id="vis-5" class="theorem-visual">
+                <strong>Чертеж:</strong> Открытая книга. Корешок и любая строчка текста — это пересекающиеся прямые. Они жестко задают плоскость страницы.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">6. Две прямые в пространстве называются параллельными, если они лежат в одной плоскости и не пересекаются</div>
+            <button class="toggle-btn" onclick="showVisual('vis-6')">Показать визуализацию</button>
+            <div id="vis-6" class="theorem-visual">
+                <strong>Чертеж:</strong> Рельсы на прямом участке пути. Они никогда не встретятся, но всегда можно положить одну плоскую доску так, чтобы она коснулась обоих рельсов.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">7. Через любую точку пространства, не лежащую на данной прямой, проходит прямая, параллельная данной, и притом только одна</div>
+            <button class="toggle-btn" onclick="showVisual('vis-7')">Показать визуализацию</button>
+            <div id="vis-7" class="theorem-visual">
+                <strong>Чертеж:</strong> Провод в стене и гвоздь, вбитый в другом месте. Можно провести только одну линию, параллельную проводу, через шляпку этого гвоздя.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">8. Если одна из двух параллельных прямых пересекает данную плоскость, то и другая прямая пересекает эту плоскость</div>
+            <button class="toggle-btn" onclick="showVisual('vis-8')">Показать визуализацию</button>
+            <div id="vis-8" class="theorem-visual">
+                <strong>Чертеж:</strong> Две параллельные струны гитары. Если одна струна касается грифа (плоскости) в ладу, то и вторая обязательно коснется его в том же месте.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">9. Если 2 прямые параллельны третьей прямой, то они параллельны</div>
+            <button class="toggle-btn" onclick="showVisual('vis-9')">Показать визуализацию</button>
+            <div id="vis-9" class="theorem-visual">
+                <strong>Чертеж:</strong> Представьте строительные леса из вертикальных стоек. Две крайние стойки (прямые А и Б) строго вертикальны. Между ними натянута тонкая веревка-отвес (прямая В). Если левая стойка А идет строго вдоль веревки, и правая стойка Б тоже идет строго вдоль этой же веревки, то эти две стойки неизбежно будут параллельны друг другу. Они не могут «сойтись» наверху или «разойтись», иначе одна из них перестала бы быть параллельной центральной нити.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">10. Прямая и плоскость называются параллельными, если они не имеют общих точек</div>
+            <button class="toggle-btn" onclick="showVisual('vis-10')">Показать визуализацию</button>
+            <div id="vis-10" class="theorem-visual">
+                <strong>Чертеж:</strong> Провод над дорогой или карандаш, парящий строго над столом, не касаясь его.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">11. Если прямая, не лежащая в данной плоскости, параллельна какой-нибудь прямой, лежащей в этой плоскости, то она параллельна данной плоскости</div>
+            <button class="toggle-btn" onclick="showVisual('vis-11')">Показать визуализацию</button>
+            <div id="vis-11" class="theorem-visual">
+                <strong>Чертеж:</strong> Потолок (плоскость) и натянутая под ним леска (прямая). Если леска параллельна плинтусу, который лежит на потолке, то леска никогда не проткнет потолок.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">12. Если плоскость проходит через данную прямую, параллельную другой плоскости, и пересекает эту плоскость, то линия пересечения плоскостей параллельна данной прямой</div>
+            <button class="toggle-btn" onclick="showVisual('vis-12')">Показать визуализацию</button>
+            <div id="vis-12" class="theorem-visual">
+                <strong>Чертеж:</strong> Возьмите лист бумаги (плоскость 1), положите на него карандаш (прямая), который не касается края стола (плоскость 2), но направлен вдоль него. Если вы накроете всё это вторым листом (плоскость 3), то линия сгиба между листами будет идти строго параллельно карандашу.
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="equation">13. Если одна из двух параллельных прямых параллельна данной плоскости, то другая прямая либо также параллельна данной плоскости, либо лежит в этой плоскости</div>
+            <button class="toggle-btn" onclick="showVisual('vis-13')">Показать визуализацию</button>
+            <div id="vis-13" class="theorem-visual">
+                <strong>Чертеж:</strong> Представьте ровную стену (это плоскость). Возьмите длинную прямую палку (прямая $a$) и прислоните её к стене так, чтобы она была строго вертикальна и касалась стены всей своей длиной — она лежит в плоскости стены. Теперь возьмите вторую прямую палку (прямая $b$), которая параллельна первой. Если вы поставите её рядом, она тоже будет стоять вертикально. У вас есть два варианта: либо вы тоже прислоните её к этой же стене (она будет лежать в плоскости), либо отнесёте её на шаг в сторону от стены. Во втором случае она будет идти строго параллельно стене, не касаясь её ни в одной точке (будет параллельна плоскости).
+            </div>
+        </div>
+    </section>
+
+    <footer class="page-footer">
+        © 2026 Сборник теорем. Для визуализации используйте пространственное воображение.
+    </footer>
+</div>
+
+<script>
+    function showVisual(id) {
+        const vis = document.getElementById(id);
+        if (vis.style.display === 'block') {
+            vis.style.display = 'none';
+        } else {
+            vis.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
